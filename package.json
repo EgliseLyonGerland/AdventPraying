@@ -18,11 +18,27 @@
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-react": "7.27.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.0.3",
     "prettier-eslint": "13.0.0",
     "prettier-eslint-cli": "5.0.1"
   },
   "scripts": {
     "draw": "node index draw",
-    "register": "node index register"
+    "register": "node index register",
+    "lint": "eslint .",
+    "format": "prettier --write --ignore-unknown '**/*'",
+    "format-check": "prettier --check --ignore-unknown '**/*'",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*": [
+      "prettier --write --ignore-unknown",
+      "git add"
+    ]
   }
 }
