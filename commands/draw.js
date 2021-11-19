@@ -10,7 +10,7 @@ const draws = require('../data/draws');
 const command = `draw`;
 const desc = "Let's draw";
 
-const builder = yargs =>
+const builder = (yargs) =>
   yargs.options({
     year: {
       alias: 'y',
@@ -21,13 +21,13 @@ const builder = yargs =>
     },
   });
 
-const ask = async options => {
+const ask = async (options) => {
   const { answer } = await prompt([{ ...options, name: 'answer' }]);
 
   return answer || null;
 };
 
-const confirm = message =>
+const confirm = (message) =>
   ask({
     name: 'continue',
     type: 'confirm',
@@ -37,7 +37,7 @@ const confirm = message =>
 const getAvailablePersons = (person, participants, mapping) =>
   filter(
     participants,
-    participant => {
+    (participant) => {
       if (person.id === participant.id) {
         return false;
       }
@@ -54,7 +54,7 @@ const getAvailablePersons = (person, participants, mapping) =>
         return false;
       }
 
-      if (findKey(mapping, id => id === person.id) === participant.id) {
+      if (findKey(mapping, (id) => id === person.id) === participant.id) {
         return false;
       }
 
@@ -63,10 +63,10 @@ const getAvailablePersons = (person, participants, mapping) =>
     [],
   );
 
-const shake = participants => {
+const shake = (participants) => {
   const mapping = {};
 
-  forEach(participants, person => {
+  forEach(participants, (person) => {
     const availablePersons = getAvailablePersons(person, participants, mapping);
     const remain = size(participants) - size(mapping);
 
@@ -88,8 +88,8 @@ const shake = participants => {
   return mapping;
 };
 
-const resolveExclude = (participants, year) => {
-  return participants.map(person => {
+const resolveExclude = (participants, year) =>
+  participants.map((person) => {
     let { exclude = [] } = person;
 
     // Exclude same family members
@@ -115,7 +115,6 @@ const resolveExclude = (participants, year) => {
       exclude,
     };
   });
-};
 
 const handler = async ({ year }) => {
   const { rows } = termSize();
@@ -129,7 +128,7 @@ const handler = async ({ year }) => {
       checked: true,
     })),
     pageSize: Math.max(10, rows - 10),
-    validate: input => {
+    validate: (input) => {
       if (input.length < 3) {
         return 'You must choose 3 persons at least';
       }

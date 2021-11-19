@@ -8,7 +8,7 @@ const persons = require('../data/persons.json');
 const command = `register`;
 const desc = 'Register a person';
 
-const confirm = async message =>
+const confirm = async (message) =>
   (
     await prompt({
       name: 'ok',
@@ -17,7 +17,7 @@ const confirm = async message =>
     })
   ).ok;
 
-const getAvailableId = baseId => {
+const getAvailableId = (baseId) => {
   let counter = 2;
   while (_.find(persons, ['id', `${baseId}${counter}`])) {
     counter += 1;
