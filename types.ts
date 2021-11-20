@@ -7,12 +7,14 @@ export enum AgeRange {
   '18+' = '18+',
 }
 
-export interface Person {
+export interface PersonData {
   id: PersonId;
   firstname: string;
   lastname: string;
-  age: AgeRange;
-  exclude: PersonId[];
+  age?: AgeRange;
+  exclude?: PersonId[];
 }
+
+export type Person = Required<PersonData>;
 
 export type Draw = Record<PersonId, PersonId>;

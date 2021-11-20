@@ -4,7 +4,7 @@ import { prompt, QuestionCollection } from 'inquirer';
 import { format } from 'prettier';
 import _ from 'lodash';
 import persons from '../data/persons';
-import { AgeRange } from '../types';
+import { AgeRange, PersonData } from '../types';
 
 const command = `register`;
 const desc = 'Register a person';
@@ -64,12 +64,13 @@ const handler = async () => {
     id = getAvailableId(id);
   }
 
-  persons.push({
+  const data: PersonData[] = persons;
+
+  data.push({
     id,
     firstname,
     lastname,
     age,
-    exclude: [],
   });
 
   const sortedPersons = _.sortBy(persons, ['id']);

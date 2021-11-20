@@ -2,421 +2,313 @@
   {
     "id": "alexandre-sarran",
     "firstname": "Alexandre",
-    "lastname": "Sarran",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Sarran"
   },
   {
     "id": "amelie-fournier",
     "firstname": "Amélie",
-    "lastname": "Fournier",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Fournier"
   },
   {
     "id": "amy-haddad",
     "firstname": "Amy",
-    "lastname": "Haddad",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Haddad"
   },
   {
     "id": "anne-julien",
     "firstname": "Anne",
-    "lastname": "Julien",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Julien"
   },
   {
     "id": "annie-tshika",
     "firstname": "Annie",
-    "lastname": "Tshika",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Tshika"
   },
   {
     "id": "caedmon-haddad",
     "firstname": "Caedmon",
     "lastname": "Haddad",
-    "age": "14-17",
-    "exclude": []
+    "age": "14-17"
   },
   {
     "id": "charlene-picq",
     "firstname": "Charlène",
-    "lastname": "Picq",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Picq"
   },
   {
     "id": "david-bourgeois",
     "firstname": "David",
     "lastname": "Bourgeois",
-    "age": "18+",
     "exclude": ["enora-corlay"]
   },
   {
     "id": "denis-blum",
     "firstname": "Denis",
-    "lastname": "Blum",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Blum"
   },
   {
     "id": "dimitri-cobb",
     "firstname": "Dimitri",
-    "lastname": "Cobb",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Cobb"
   },
   {
     "id": "dwight-bornes",
     "firstname": "Dwight",
-    "lastname": "Bornes",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Bornes"
   },
   {
     "id": "enora-corlay",
     "firstname": "Énora",
     "lastname": "Corlay",
-    "age": "18+",
     "exclude": ["david-bourgeois"]
   },
   {
     "id": "etienne-gerber",
     "firstname": "Étienne",
-    "lastname": "Gerber",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Gerber"
   },
   {
     "id": "etienne-sarran",
     "firstname": "Étienne",
     "lastname": "Sarran",
-    "age": "14-17",
-    "exclude": []
+    "age": "14-17"
   },
   {
     "id": "fabrice-lingois",
     "firstname": "Fabrice",
-    "lastname": "Lingois",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Lingois"
   },
   {
     "id": "flora-julien",
     "firstname": "Flora",
-    "lastname": "Julien",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Julien"
   },
   {
     "id": "gilles-campoy",
     "firstname": "Gilles",
-    "lastname": "Campoy",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Campoy"
   },
   {
     "id": "helene-bazille",
     "firstname": "Hélène",
-    "lastname": "Bazille",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Bazille"
   },
   {
     "id": "isaque-carreto",
     "firstname": "Isaque",
-    "lastname": "Carreto",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Carreto"
   },
   {
     "id": "ivan-hamelin",
     "firstname": "Ivan",
     "lastname": "Hamelin",
-    "age": "14-17",
-    "exclude": []
+    "age": "14-17"
   },
   {
     "id": "jean-francois-maniere",
     "firstname": "Jean-François",
-    "lastname": "Manière",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Manière"
   },
   {
     "id": "jeronimo-avelluneda",
     "firstname": "Jeronimo",
     "lastname": "Avelluneda",
-    "age": "14-17",
-    "exclude": []
+    "age": "14-17"
   },
   {
     "id": "jonah-haddad",
     "firstname": "Jonah",
-    "lastname": "Haddad",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Haddad"
   },
   {
     "id": "joshua-sims",
     "firstname": "Joshua",
-    "lastname": "Sims",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Sims"
   },
   {
     "id": "jung-yeon-gosselin",
     "firstname": "Jung-Yeon",
-    "lastname": "Gosselin",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Gosselin"
   },
   {
     "id": "kalhou-vang",
     "firstname": "Kalhou",
-    "lastname": "Vang",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Vang"
   },
   {
     "id": "karine-comte",
     "firstname": "Karine",
-    "lastname": "Comte",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Comte"
   },
   {
     "id": "laetitia-grare",
     "firstname": "Laetitia",
-    "lastname": "Grare",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Grare"
   },
   {
     "id": "laetitia-stauffer",
     "firstname": "Laetitia",
-    "lastname": "Stauffer",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Stauffer"
   },
   {
     "id": "lenora-haddad",
     "firstname": "Lenora",
-    "lastname": "Haddad",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Haddad"
   },
   {
     "id": "linda-hamelin",
     "firstname": "Linda",
-    "lastname": "Hamelin",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Hamelin"
   },
   {
     "id": "mailys-blum",
     "firstname": "Mailys",
-    "lastname": "Blum",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Blum"
   },
   {
     "id": "margaret-haddad",
     "firstname": "Margaret",
     "lastname": "Haddad",
-    "age": "10-13",
-    "exclude": []
+    "age": "10-13"
   },
   {
     "id": "marie-noelle-gerber",
     "firstname": "Marie-Noëlle",
-    "lastname": "Gerber",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Gerber"
   },
   {
     "id": "marie-julien",
     "firstname": "Marie",
     "lastname": "Julien",
-    "age": "10-13",
-    "exclude": []
+    "age": "10-13"
   },
   {
     "id": "matthieu-sarran",
     "firstname": "Matthieu",
-    "lastname": "Sarran",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Sarran"
   },
   {
     "id": "mireille-yoyotte-landry",
     "firstname": "Mireille",
-    "lastname": "Yoyotte Landry",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Yoyotte Landry"
   },
   {
     "id": "nathalie-merlano",
     "firstname": "Nathalie",
-    "lastname": "Merlano",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Merlano"
   },
   {
     "id": "orlane-batman",
     "firstname": "Orlane",
-    "lastname": "Batman",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Batman"
   },
   {
     "id": "pascal-haddad",
     "firstname": "Pascal",
     "lastname": "Haddad",
-    "age": "10-13",
-    "exclude": []
+    "age": "10-13"
   },
   {
     "id": "pierrick-fournier",
     "firstname": "Pierrick",
-    "lastname": "Fournier",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Fournier"
   },
   {
     "id": "qiqi-zhu",
     "firstname": "Qiqi",
-    "lastname": "Zhu",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Zhu"
   },
   {
     "id": "rafaella-bartz-pena",
     "firstname": "Rafaella",
-    "lastname": "Bartz Pena",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Bartz Pena"
   },
   {
     "id": "solange-de-melo",
     "firstname": "Solange",
-    "lastname": "De Melo",
-    "age": "18+",
-    "exclude": []
+    "lastname": "De Melo"
   },
   {
     "id": "soohyun-vang",
     "firstname": "Soohyun",
-    "lastname": "Vang",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Vang"
   },
   {
     "id": "stephane-hamelin",
     "firstname": "Stéphane",
-    "lastname": "Hamelin",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Hamelin"
   },
   {
     "id": "suzanne-sarran",
     "firstname": "Suzanne",
-    "lastname": "Sarran",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Sarran"
   },
   {
     "id": "tehele-mpassi",
     "firstname": "Tehele",
-    "lastname": "Mpassi",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Mpassi"
   },
   {
     "id": "teresa-carreto",
     "firstname": "Teresa",
-    "lastname": "Carreto",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Carreto"
   },
   {
     "id": "theotime-julien",
     "firstname": "Théotime",
     "lastname": "Julien",
-    "age": "14-17",
-    "exclude": []
+    "age": "14-17"
   },
   {
     "id": "thierry-comte",
     "firstname": "Thierry",
-    "lastname": "Comte",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Comte"
   },
   {
     "id": "timothee-sarran",
     "firstname": "Timothée",
-    "lastname": "Sarran",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Sarran"
   },
   {
     "id": "timothee-vang",
     "firstname": "Timothée",
     "lastname": "Vang",
-    "age": "10-13",
-    "exclude": []
+    "age": "10-13"
   },
   {
     "id": "tom-kristanek",
     "firstname": "Tom",
-    "lastname": "Kristanek",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Kristanek"
   },
   {
     "id": "toyese-oyegoke",
     "firstname": "Toyese",
-    "lastname": "Oyegoke",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Oyegoke"
   },
   {
     "id": "trina-collet",
     "firstname": "Trina",
-    "lastname": "Collet",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Collet"
   },
   {
     "id": "vallouise-sarran",
     "firstname": "Vallouise",
     "lastname": "Sarran",
-    "age": "10-13",
-    "exclude": []
+    "age": "10-13"
   },
   {
     "id": "vincent-collet",
     "firstname": "Vincent",
-    "lastname": "Collet",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Collet"
   },
   {
     "id": "yi-hsuan-chen",
     "firstname": "Yi-Hsuan",
-    "lastname": "Chen",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Chen"
   },
   {
     "id": "yvettes-campoy",
     "firstname": "Yvettes",
-    "lastname": "Campoy",
-    "age": "18+",
-    "exclude": []
+    "lastname": "Campoy"
   }
 ]
