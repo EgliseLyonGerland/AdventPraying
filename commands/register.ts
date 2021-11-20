@@ -73,7 +73,7 @@ const handler = async () => {
   });
 
   const sortedPersons = _.sortBy(persons, ['id']);
-  const filepath = path.join(__dirname, '../data/persons.json');
+  const filepath = path.join(__dirname, '../data/persons/data.json');
 
   let content = JSON.stringify(sortedPersons);
   content = format(content, { parser: 'json' });
