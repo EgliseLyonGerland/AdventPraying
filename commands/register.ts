@@ -1,23 +1,23 @@
-const fs = require('fs');
-const path = require('path');
-const { prompt } = require('inquirer');
-const { format } = require('prettier');
-const _ = require('lodash');
-const persons = require('../data/persons.json');
+import fs from 'fs';
+import path from 'path';
+import { prompt } from 'inquirer';
+import { format } from 'prettier';
+import _ from 'lodash';
+import persons from '../data/persons';
 
 const command = `register`;
 const desc = 'Register a person';
 
-const confirm = async (message) =>
+const confirm = async (message: string) =>
   (
-    await prompt({
+    await prompt<{ ok: boolean }>({
       name: 'ok',
       type: 'confirm',
       message,
     })
   ).ok;
 
-const getAvailableId = (baseId) => {
+const getAvailableId = (baseId: string) => {
   let counter = 2;
   while (_.find(persons, ['id', `${baseId}${counter}`])) {
     counter += 1;
@@ -44,7 +44,11 @@ const handler = async () => {
     },
   ];
 
-  const { firstname, lastname, kids } = await prompt(questions);
+  const { firstname, lastname, kids } = await prompt<{
+    firstname: string;
+    lastname: string;
+    kids: boolean;
+  }>(questions);
 
   let id = _.kebabCase(`${firstname} ${lastname}`);
 
@@ -69,7 +73,7 @@ const handler = async () => {
   const sortedPersons = _.sortBy(persons, ['id']);
   const filepath = path.join(__dirname, '../data/persons.json');
 
-  let content = JSON.stringify(sortedPersons, '  ', 2);
+  let content = JSON.stringify(sortedPersons);
   content = format(content, { parser: 'json' });
 
   fs.writeFileSync(filepath, content);
@@ -79,7 +83,7 @@ const handler = async () => {
   }
 };
 
-module.exports = {
+export default {
   command,
   desc,
   handler,
