@@ -50,7 +50,7 @@ const getAvailablePersons = (
       return false;
     }
 
-    if (person.kids !== participant.kids) {
+    if (person.age !== participant.age) {
       return false;
     }
 
@@ -129,9 +129,9 @@ const handler = async ({ year }: Arguments<Props>) => {
     (await ask<Person[]>({
       type: 'checkbox',
       message: 'Select the participants',
-      choices: map(persons, ({ id, firstname, lastname, kids }) => ({
+      choices: map(persons, ({ id, firstname, lastname, age }) => ({
         value: id,
-        name: `${firstname} ${lastname}${kids ? ' (kid)' : ''}`,
+        name: `${firstname} ${lastname} (${age})`,
         checked: true,
       })),
       pageSize: Math.max(10, rows - 10),

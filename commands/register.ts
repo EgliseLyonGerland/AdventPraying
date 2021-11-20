@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
-import { prompt } from 'inquirer';
+import { prompt, QuestionCollection } from 'inquirer';
 import { format } from 'prettier';
 import _ from 'lodash';
 import persons from '../data/persons';
+import { AgeRange } from '../types';
 
 const command = `register`;
 const desc = 'Register a person';
@@ -27,7 +28,7 @@ const getAvailableId = (baseId: string) => {
 };
 
 const handler = async () => {
-  const questions = [
+  const questions: QuestionCollection = [
     {
       name: 'firstname',
       message: 'Prénom',
@@ -39,15 +40,16 @@ const handler = async () => {
     {
       name: 'kids',
       message: 'Enfant',
-      type: 'confirm',
-      default: false,
+      type: 'list',
+      choices: Object.values(AgeRange),
+      default: AgeRange['18+'],
     },
   ];
 
-  const { firstname, lastname, kids } = await prompt<{
+  const { firstname, lastname, age } = await prompt<{
     firstname: string;
     lastname: string;
-    kids: boolean;
+    age: AgeRange;
   }>(questions);
 
   let id = _.kebabCase(`${firstname} ${lastname}`);
@@ -66,7 +68,7 @@ const handler = async () => {
     id,
     firstname,
     lastname,
-    kids,
+    age,
     exclude: [],
   });
 
