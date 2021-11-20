@@ -1,4 +1,4 @@
-import { map, includes, filter, shuffle, sample, findKey, size, forEach } from 'lodash';
+import { map, filter, shuffle, sample, findKey, size, forEach, some } from 'lodash';
 import fs from 'fs';
 import path from 'path';
 import { DistinctQuestion, prompt } from 'inquirer';
@@ -148,7 +148,7 @@ const handler = async ({ year }: Arguments<Props>) => {
     return;
   }
 
-  participants = filter(persons, (person) => includes(participants, person));
+  participants = filter(persons, ({ id }) => !some(participants, ['id', id]));
   participants = resolveExclude(participants, year);
   participants = shuffle(participants);
 
