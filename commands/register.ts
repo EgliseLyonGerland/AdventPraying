@@ -77,7 +77,7 @@ const handler = async () => {
   const filepath = path.join(__dirname, '../data/persons/data.json');
 
   let content = JSON.stringify(sortedPersons);
-  content = format(content, { parser: 'json' });
+  content = format(content.replace(/{/g, '{\n'), { parser: 'json' });
 
   fs.writeFileSync(filepath, content);
 
