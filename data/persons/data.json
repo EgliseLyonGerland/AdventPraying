@@ -7,12 +7,14 @@
   {
     "id": "amelie-fournier",
     "firstname": "Amélie",
-    "lastname": "Fournier"
+    "lastname": "Fournier",
+    "archived": true
   },
   {
     "id": "amy-haddad",
     "firstname": "Amy",
-    "lastname": "Haddad"
+    "lastname": "Haddad",
+    "archived": true
   },
   {
     "id": "anne-julien",
@@ -28,7 +30,8 @@
     "id": "caedmon-haddad",
     "firstname": "Caedmon",
     "lastname": "Haddad",
-    "age": "14-17"
+    "age": "14-17",
+    "archived": true
   },
   {
     "id": "charlene-picq",
@@ -39,7 +42,8 @@
     "id": "david-bourgeois",
     "firstname": "David",
     "lastname": "Bourgeois",
-    "exclude": ["enora-corlay"]
+    "exclude": ["enora-corlay"],
+    "archived": true
   },
   {
     "id": "denis-blum",
@@ -54,13 +58,15 @@
   {
     "id": "dwight-bornes",
     "firstname": "Dwight",
-    "lastname": "Bornes"
+    "lastname": "Bornes",
+    "archived": true
   },
   {
     "id": "enora-corlay",
     "firstname": "Énora",
     "lastname": "Corlay",
-    "exclude": ["david-bourgeois"]
+    "exclude": ["david-bourgeois"],
+    "archived": true
   },
   {
     "id": "etienne-gerber",
@@ -118,7 +124,8 @@
   {
     "id": "jonah-haddad",
     "firstname": "Jonah",
-    "lastname": "Haddad"
+    "lastname": "Haddad",
+    "archived": true
   },
   {
     "id": "joshua-sims",
@@ -143,17 +150,20 @@
   {
     "id": "laetitia-grare",
     "firstname": "Laetitia",
-    "lastname": "Grare"
+    "lastname": "Grare",
+    "archived": true
   },
   {
     "id": "laetitia-stauffer",
     "firstname": "Laetitia",
-    "lastname": "Stauffer"
+    "lastname": "Stauffer",
+    "archived": true
   },
   {
     "id": "lenora-haddad",
     "firstname": "Lenora",
-    "lastname": "Haddad"
+    "lastname": "Haddad",
+    "archived": true
   },
   {
     "id": "linda-hamelin",
@@ -169,7 +179,8 @@
     "id": "margaret-haddad",
     "firstname": "Margaret",
     "lastname": "Haddad",
-    "age": "10-13"
+    "age": "10-13",
+    "archived": true
   },
   {
     "id": "marie-noelle-gerber",
@@ -185,7 +196,8 @@
   {
     "id": "matthieu-sarran",
     "firstname": "Matthieu",
-    "lastname": "Sarran"
+    "lastname": "Sarran",
+    "archived": true
   },
   {
     "id": "mireille-yoyotte-landry",
@@ -200,18 +212,21 @@
   {
     "id": "orlane-batman",
     "firstname": "Orlane",
-    "lastname": "Batman"
+    "lastname": "Batman",
+    "archived": true
   },
   {
     "id": "pascal-haddad",
     "firstname": "Pascal",
     "lastname": "Haddad",
-    "age": "10-13"
+    "age": "10-13",
+    "archived": true
   },
   {
     "id": "pierrick-fournier",
     "firstname": "Pierrick",
-    "lastname": "Fournier"
+    "lastname": "Fournier",
+    "archived": true
   },
   {
     "id": "qiqi-zhu",
@@ -221,7 +236,8 @@
   {
     "id": "rafaella-bartz-pena",
     "firstname": "Rafaella",
-    "lastname": "Bartz Pena"
+    "lastname": "Bartz Pena",
+    "archived": true
   },
   {
     "id": "solange-de-melo",
@@ -246,7 +262,8 @@
   {
     "id": "tehele-mpassi",
     "firstname": "Tehele",
-    "lastname": "Mpassi"
+    "lastname": "Mpassi",
+    "archived": true
   },
   {
     "id": "teresa-carreto",
@@ -283,7 +300,8 @@
   {
     "id": "toyese-oyegoke",
     "firstname": "Toyese",
-    "lastname": "Oyegoke"
+    "lastname": "Oyegoke",
+    "archived": true
   },
   {
     "id": "trina-collet",

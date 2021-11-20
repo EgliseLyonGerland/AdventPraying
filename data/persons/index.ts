@@ -6,10 +6,11 @@ const data = JSON.parse(
   fs.readFileSync(path.join(__dirname, 'data.json')).toString(),
 ) as PersonData[];
 
-const persons: Person[] = data.map((item) => ({
+export const all: Person[] = data.map((item) => ({
   age: AgeRange['18+'],
   exclude: [],
+  archived: false,
   ...item,
 }));
 
-export default persons;
+export default all.filter(({ archived }) => !archived);

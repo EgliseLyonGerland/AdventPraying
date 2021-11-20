@@ -3,7 +3,7 @@ import path from 'path';
 import { prompt, QuestionCollection } from 'inquirer';
 import { format } from 'prettier';
 import _ from 'lodash';
-import persons from '../data/persons';
+import { all as persons } from '../data/persons';
 import { AgeRange, PersonData } from '../types';
 
 const command = `register`;

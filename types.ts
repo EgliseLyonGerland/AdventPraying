@@ -13,6 +13,7 @@ export interface PersonData {
   lastname: string;
   age?: AgeRange;
   exclude?: PersonId[];
+  archived?: boolean;
 }
 
 export type Person = Required<PersonData>;
