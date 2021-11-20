@@ -38,7 +38,7 @@ const handler = async () => {
       message: 'Nom',
     },
     {
-      name: 'kids',
+      name: 'age',
       message: 'Enfant',
       type: 'list',
       choices: Object.values(AgeRange),
