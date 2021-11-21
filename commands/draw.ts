@@ -7,7 +7,7 @@ import { Argv, Arguments, CommandModule } from 'yargs';
 
 import persons from '../data/persons';
 import draws from '../data/draws';
-import { Person, PersonId } from '../types';
+import { Draw, Person, PersonId } from '../types';
 
 interface Props {
   year: number;
@@ -125,6 +125,8 @@ const resolveExclude = (participants: Person[], year: number) =>
 const handler = async ({ year }: Arguments<Props>) => {
   const { rows } = termSize();
 
+  const currentDraw: Draw = draws[year] || {};
+
   let participants =
     (await ask<Person[]>({
       type: 'checkbox',
@@ -132,7 +134,7 @@ const handler = async ({ year }: Arguments<Props>) => {
       choices: map(persons, (person) => ({
         value: person,
         name: `${person.firstname} ${person.lastname} (${person.age})`,
-        checked: true,
+        checked: currentDraw[person.id],
       })),
       pageSize: Math.max(10, rows - 10),
       validate: (input: Person[]) => {
