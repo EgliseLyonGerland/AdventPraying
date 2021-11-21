@@ -3,8 +3,8 @@ import path from 'path';
 import { prompt, QuestionCollection } from 'inquirer';
 import { format } from 'prettier';
 import _ from 'lodash';
-import { all as persons } from '../data/persons';
-import { AgeRange, PersonData } from '../types';
+import { data as persons } from '../data/persons';
+import { AgeRange } from '../types';
 
 const command = `register`;
 const desc = 'Register a person';
@@ -64,13 +64,11 @@ const handler = async () => {
     id = getAvailableId(id);
   }
 
-  const data: PersonData[] = persons;
-
-  data.push({
+  persons.push({
     id,
     firstname,
     lastname,
-    age,
+    ...(age === AgeRange['18+'] ? {} : { age }),
   });
 
   const sortedPersons = _.sortBy(persons, ['id']);

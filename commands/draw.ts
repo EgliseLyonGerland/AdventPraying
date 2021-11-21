@@ -1,4 +1,4 @@
-import { map, filter, shuffle, sample, findKey, size, forEach, some } from 'lodash';
+import { map, filter, shuffle, sample, findKey, size, forEach } from 'lodash';
 import fs from 'fs';
 import path from 'path';
 import { DistinctQuestion, prompt } from 'inquirer';
@@ -129,9 +129,9 @@ const handler = async ({ year }: Arguments<Props>) => {
     (await ask<Person[]>({
       type: 'checkbox',
       message: 'Select the participants',
-      choices: map(persons, ({ id, firstname, lastname, age }) => ({
-        value: id,
-        name: `${firstname} ${lastname} (${age})`,
+      choices: map(persons, (person) => ({
+        value: person,
+        name: `${person.firstname} ${person.lastname} (${person.age})`,
         checked: true,
       })),
       pageSize: Math.max(10, rows - 10),
@@ -148,7 +148,6 @@ const handler = async ({ year }: Arguments<Props>) => {
     return;
   }
 
-  participants = filter(persons, ({ id }) => !some(participants, ['id', id]));
   participants = resolveExclude(participants, year);
   participants = shuffle(participants);
 
