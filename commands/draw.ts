@@ -161,7 +161,7 @@ const handler = async ({ year }: Arguments<Props>) => {
   );
 };
 
-const commandModule: CommandModule<Record<string, unknown>, Props> = {
+const commandModule: CommandModule<unknown, Props> = {
   command,
   describe,
   builder,

@@ -9,6 +9,7 @@ export enum AgeRange {
 
 export interface PersonData {
   id: PersonId;
+  email: string;
   firstname: string;
   lastname: string;
   age?: AgeRange;
