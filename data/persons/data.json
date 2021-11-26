@@ -1,9 +1,15 @@
 [
   {
     "id": "alexandre-sarran",
+    "email": "alexandre.sarran@egliselyongerland.org",
     "firstname": "Alexandre",
-    "lastname": "Sarran",
-    "archived": true
+    "lastname": "Sarran"
+  },
+  {
+    "id": "amaury-francais",
+    "email": "fra.amaury@gmail.com",
+    "firstname": "Amaury",
+    "lastname": "Français"
   },
   {
     "id": "amelie-fournier",
@@ -30,6 +36,19 @@
     "archived": true
   },
   {
+    "id": "augustin-sarran",
+    "email": "alexsarran@gmail.com",
+    "firstname": "Augustin",
+    "lastname": "Sarran",
+    "age": "6-9"
+  },
+  {
+    "id": "aurelie-charles",
+    "email": "aurelie.wattiau@laposte.net",
+    "firstname": "Aurélie",
+    "lastname": "Charles"
+  },
+  {
     "id": "caedmon-haddad",
     "firstname": "Caedmon",
     "lastname": "Haddad",
@@ -37,10 +56,28 @@
     "archived": true
   },
   {
+    "id": "caryn-di-gena",
+    "email": "caryn.digena@efca.org",
+    "firstname": "Caryn",
+    "lastname": "DiGena"
+  },
+  {
     "id": "charlene-picq",
+    "email": "picqcharlene.cnp@gmail.com",
     "firstname": "Charlène",
-    "lastname": "Picq",
-    "archived": true
+    "lastname": "Picq"
+  },
+  {
+    "id": "colin-cachard",
+    "email": "colin-cachard@orange.fr",
+    "firstname": "Colin",
+    "lastname": "Cachard"
+  },
+  {
+    "id": "daniel-le-gal",
+    "email": "daniel.legal.00@gmail.com",
+    "firstname": "Daniel",
+    "lastname": "Le Gal"
   },
   {
     "id": "david-bourgeois",
@@ -51,9 +88,9 @@
   },
   {
     "id": "denis-blum",
+    "email": "blumdenis@aol.com",
     "firstname": "Denis",
-    "lastname": "Blum",
-    "archived": true
+    "lastname": "Blum"
   },
   {
     "id": "dimitri-cobb",
@@ -66,6 +103,26 @@
     "firstname": "Dwight",
     "lastname": "Bornes",
     "archived": true
+  },
+  {
+    "id": "elia-grace-exbrayat",
+    "email": "exbrayatpv@gmail.com",
+    "firstname": "Elia-Grace",
+    "lastname": "Exbrayat",
+    "age": "10-13"
+  },
+  {
+    "id": "elona-caparros",
+    "email": "elona.caparros@icould.com",
+    "firstname": "Elona",
+    "lastname": "Caparros",
+    "age": "14-17"
+  },
+  {
+    "id": "elsa-lelieu",
+    "email": "elsamon@hotmail.fr",
+    "firstname": "Elsa",
+    "lastname": "Lelieu"
   },
   {
     "id": "enora-corlay",
@@ -82,16 +139,16 @@
   },
   {
     "id": "etienne-sarran",
-    "firstname": "Étienne",
+    "email": "etiennesarran@gmail.com",
+    "firstname": "Etienne",
     "lastname": "Sarran",
-    "age": "14-17",
-    "archived": true
+    "age": "14-17"
   },
   {
     "id": "fabrice-lingois",
+    "email": "lingois.fabrice@hotmail.fr",
     "firstname": "Fabrice",
-    "lastname": "Lingois",
-    "archived": true
+    "lastname": "Lingois"
   },
   {
     "id": "flora-julien",
@@ -100,16 +157,40 @@
     "archived": true
   },
   {
+    "id": "florian-vincenzi",
+    "email": "vincenzi.florian@gmail.com",
+    "firstname": "Florian",
+    "lastname": "Vincenzi"
+  },
+  {
+    "id": "francois-risson",
+    "email": "francoisrisson@gmail.com",
+    "firstname": "François",
+    "lastname": "Risson"
+  },
+  {
+    "id": "gabrielle-ziegler",
+    "email": "gabi@zieglers.org",
+    "firstname": "Gabriëlle",
+    "lastname": "Ziegler"
+  },
+  {
     "id": "gilles-campoy",
+    "email": "gillescampoy42@gmail.com",
     "firstname": "Gilles",
-    "lastname": "Campoy",
-    "archived": true
+    "lastname": "Campoy"
   },
   {
     "id": "helene-bazille",
+    "email": "helene@bazille.fr",
     "firstname": "Hélène",
-    "lastname": "Bazille",
-    "archived": true
+    "lastname": "Bazille"
+  },
+  {
+    "id": "hyun-joo-exbrayat",
+    "email": "exbrayatpv@gmail.com",
+    "firstname": "Hyun-Joo",
+    "lastname": "Exbrayat"
   },
   {
     "id": "isaque-carreto",
@@ -125,17 +206,29 @@
     "archived": true
   },
   {
-    "id": "jean-francois-maniere",
+    "id": "jean-francois-chanel",
+    "email": "sabine.chanel@laposte.net",
     "firstname": "Jean-François",
-    "lastname": "Manière",
-    "archived": true
+    "lastname": "Chanel"
   },
   {
-    "id": "jeronimo-avelluneda",
-    "firstname": "Jeronimo",
-    "lastname": "Avelluneda",
-    "age": "14-17",
-    "archived": true
+    "id": "jean-francois-maniere",
+    "email": "jf.maniere@orange.fr",
+    "firstname": "Jean-François",
+    "lastname": "Manière"
+  },
+  {
+    "id": "jeanne-guilhot",
+    "email": "Guilhot.jeanne@gmail.com",
+    "firstname": "Jeanne",
+    "lastname": "Guilhot"
+  },
+  {
+    "id": "jeronimo-avellaneda",
+    "email": "jeronimoavellaneda21@gmail.com",
+    "firstname": "Jerónimo",
+    "lastname": "Avellaneda",
+    "age": "10-13"
   },
   {
     "id": "jonah-haddad",
@@ -168,6 +261,18 @@
     "archived": true
   },
   {
+    "id": "kenneth-ziegler",
+    "email": "ken@zieglers.org",
+    "firstname": "Kenneth",
+    "lastname": "Ziegler"
+  },
+  {
+    "id": "laetitia-calabria",
+    "email": "calabrialaetitia@gmail.com",
+    "firstname": "Laetitia",
+    "lastname": "Calabria"
+  },
+  {
     "id": "laetitia-grare",
     "firstname": "Laetitia",
     "lastname": "Grare",
@@ -175,9 +280,21 @@
   },
   {
     "id": "laetitia-stauffer",
+    "email": "staufferlaetitia@gmail.com",
     "firstname": "Laetitia",
-    "lastname": "Stauffer",
-    "archived": true
+    "lastname": "Stauffer"
+  },
+  {
+    "id": "lars-fracheboud",
+    "email": "highestpeak.fr@gmail.com",
+    "firstname": "Lars",
+    "lastname": "Fracheboud"
+  },
+  {
+    "id": "laurent-caparros",
+    "email": "lm.caparros@wanadoo.fr",
+    "firstname": "Laurent",
+    "lastname": "Caparros"
   },
   {
     "id": "lenora-haddad",
@@ -187,15 +304,54 @@
   },
   {
     "id": "linda-hamelin",
+    "email": "lzhamelin@gmail.com",
     "firstname": "Linda",
-    "lastname": "Hamelin",
-    "archived": true
+    "lastname": "Hamelin"
+  },
+  {
+    "id": "lois-bazille",
+    "email": "helene@bazille.fr",
+    "firstname": "Loïs",
+    "lastname": "Bazille",
+    "age": "6-9"
+  },
+  {
+    "id": "lucy-nemoz",
+    "email": "lucynemoz@gmail.com",
+    "firstname": "Lucy",
+    "lastname": "Nemoz"
+  },
+  {
+    "id": "lycia-francais",
+    "email": "lycia.francais@gmail.com",
+    "firstname": "Lycia",
+    "lastname": "French"
+  },
+  {
+    "id": "lydie-exbrayat",
+    "email": "exbrayatpv@gmail.com",
+    "firstname": "Lydie",
+    "lastname": "Exbrayat",
+    "age": "14-17"
+  },
+  {
+    "id": "madele-bazille",
+    "email": "helene@bazille.fr",
+    "firstname": "Madèle",
+    "lastname": "Bazille",
+    "age": "6-9"
   },
   {
     "id": "mailys-blum",
+    "email": "mailysvenet@gmail.com",
     "firstname": "Mailys",
-    "lastname": "Blum",
-    "archived": true
+    "lastname": "Blum"
+  },
+  {
+    "id": "marc-descheemaecker",
+    "email": "marc.descheemaecker3@gmail.com",
+    "firstname": "Marc",
+    "lastname": "Descheemaecker"
   },
   {
     "id": "margaret-haddad",
@@ -203,6 +359,12 @@
     "lastname": "Haddad",
     "age": "10-13",
     "archived": true
+  },
+  {
+    "id": "marie-jo-descheemaecker",
+    "email": "mariejoseedesch@gmail.com",
+    "firstname": "Marie-Jo",
+    "lastname": "Descheemaecker"
   },
   {
     "id": "marie-julien",
@@ -218,6 +380,12 @@
     "archived": true
   },
   {
+    "id": "mathilde-portmann",
+    "email": "portmannmahilde@yahoo.fr",
+    "firstname": "Mathilde",
+    "lastname": "Portmann"
+  },
+  {
     "id": "matthieu-sarran",
     "firstname": "Matthieu",
     "lastname": "Sarran",
@@ -230,10 +398,22 @@
     "archived": true
   },
   {
+    "id": "myriam-caparros",
+    "email": "myriamcap@free.fr",
+    "firstname": "Myriam",
+    "lastname": "Caparros"
+  },
+  {
+    "id": "naomi-vigne",
+    "email": "nao.vigne@gmail.com",
+    "firstname": "Naomi",
+    "lastname": "Vigné"
+  },
+  {
     "id": "nathalie-merlano",
+    "email": "nathaliemerlano@hotmail.com",
     "firstname": "Nathalie",
-    "lastname": "Merlano",
-    "archived": true
+    "lastname": "Merlano"
   },
   {
     "id": "orlane-batman",
@@ -256,15 +436,21 @@
   },
   {
     "id": "qiqi-zhu",
+    "email": "qiqizhu2020@outlook.com",
     "firstname": "Qiqi",
-    "lastname": "Zhu",
-    "archived": true
+    "lastname": "Zhu"
   },
   {
     "id": "rafaella-bartz-pena",
     "firstname": "Rafaella",
     "lastname": "Bartz Pena",
     "archived": true
+  },
+  {
+    "id": "sabine-chanel",
+    "email": "sabine.chanel@laposte.net",
+    "firstname": "Sabine",
+    "lastname": "Chanel"
   },
   {
     "id": "solange-de-melo",
@@ -279,16 +465,22 @@
     "archived": true
   },
   {
+    "id": "sophie-vincenzi",
+    "email": "sophie.dellacorte@outlook.com",
+    "firstname": "Sophie",
+    "lastname": "Vincenzi"
+  },
+  {
     "id": "stephane-hamelin",
+    "email": "hamelinsteph@gmail.com",
     "firstname": "Stéphane",
-    "lastname": "Hamelin",
-    "archived": true
+    "lastname": "Hamelin"
   },
   {
     "id": "suzanne-sarran",
+    "email": "sarransuzanne@gmail.com",
     "firstname": "Suzanne",
-    "lastname": "Sarran",
-    "archived": true
+    "lastname": "Sarran"
   },
   {
     "id": "tehele-mpassi",
@@ -316,10 +508,18 @@
     "archived": true
   },
   {
+    "id": "timothee-exbrayat",
+    "email": "exbrayatpv@gmail.com",
+    "firstname": "Timothée",
+    "lastname": "Exbrayat",
+    "age": "14-17"
+  },
+  {
     "id": "timothee-sarran",
+    "email": "sarrantimothee@gmail.com",
     "firstname": "Timothée",
     "lastname": "Sarran",
-    "archived": true
+    "age": "14-17"
   },
   {
     "id": "timothee-vang",
@@ -348,10 +548,10 @@
   },
   {
     "id": "vallouise-sarran",
+    "email": "Vallouisesarran@gmail.com",
     "firstname": "Vallouise",
     "lastname": "Sarran",
-    "age": "10-13",
-    "archived": true
+    "age": "10-13"
   },
   {
     "id": "vincent-collet",
@@ -360,15 +560,29 @@
     "archived": true
   },
   {
+    "id": "violette-sarran",
+    "email": "alexsarran@gmail.com",
+    "firstname": "Violette",
+    "lastname": "Sarran",
+    "age": "6-9"
+  },
+  {
+    "id": "yahel-caparros",
+    "email": "myriamcap@free.fr",
+    "firstname": "Yahel",
+    "lastname": "Caparros",
+    "age": "14-17"
+  },
+  {
     "id": "yi-hsuan-chen",
+    "email": "artist5818@gmail.com",
     "firstname": "Yi-Hsuan",
-    "lastname": "Chen",
-    "archived": true
+    "lastname": "Chen"
   },
   {
     "id": "yvette-campoy",
+    "email": "yvettecampoy@hotmail.com",
     "firstname": "Yvette",
-    "lastname": "Campoy",
-    "archived": true
+    "lastname": "Campoy"
   }
 ]
