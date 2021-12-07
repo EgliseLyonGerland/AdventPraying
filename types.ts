@@ -12,6 +12,7 @@ export interface PersonData {
   email: string;
   firstname: string;
   lastname: string;
+  gender: 'male' | 'female';
   age?: AgeRange;
   exclude?: PersonId[];
   archived?: boolean;

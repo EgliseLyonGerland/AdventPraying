@@ -3,36 +3,42 @@
     "id": "alexandre-sarran",
     "email": "alexandre.sarran@egliselyongerland.org",
     "firstname": "Alexandre",
-    "lastname": "Sarran"
+    "lastname": "Sarran",
+    "gender": "male"
   },
   {
     "id": "amaury-francais",
     "email": "fra.amaury@gmail.com",
     "firstname": "Amaury",
-    "lastname": "Français"
+    "lastname": "Français",
+    "gender": "male"
   },
   {
     "id": "amelie-fournier",
     "firstname": "Amélie",
     "lastname": "Fournier",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "amy-haddad",
     "firstname": "Amy",
     "lastname": "Haddad",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "anne-julien",
     "firstname": "Anne",
     "lastname": "Julien",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "annie-tshika",
     "firstname": "Annie",
     "lastname": "Tshika",
+    "gender": "female",
     "archived": true
   },
   {
@@ -40,18 +46,21 @@
     "email": "alexsarran@gmail.com",
     "firstname": "Augustin",
     "lastname": "Sarran",
+    "gender": "male",
     "age": "6-9"
   },
   {
     "id": "aurelie-charles",
     "email": "aurelie.wattiau@laposte.net",
     "firstname": "Aurélie",
-    "lastname": "Charles"
+    "lastname": "Charles",
+    "gender": "female"
   },
   {
     "id": "caedmon-haddad",
     "firstname": "Caedmon",
     "lastname": "Haddad",
+    "gender": "male",
     "age": "14-17",
     "archived": true
   },
@@ -59,30 +68,35 @@
     "id": "caryn-di-gena",
     "email": "caryn.digena@efca.org",
     "firstname": "Caryn",
-    "lastname": "DiGena"
+    "lastname": "DiGena",
+    "gender": "female"
   },
   {
     "id": "charlene-picq",
     "email": "picqcharlene.cnp@gmail.com",
     "firstname": "Charlène",
-    "lastname": "Picq"
+    "lastname": "Picq",
+    "gender": "female"
   },
   {
     "id": "colin-cachard",
     "email": "colin-cachard@orange.fr",
     "firstname": "Colin",
-    "lastname": "Cachard"
+    "lastname": "Cachard",
+    "gender": "male"
   },
   {
     "id": "daniel-le-gal",
     "email": "daniel.legal.00@gmail.com",
     "firstname": "Daniel",
-    "lastname": "Le Gal"
+    "lastname": "Le Gal",
+    "gender": "male"
   },
   {
     "id": "david-bourgeois",
     "firstname": "David",
     "lastname": "Bourgeois",
+    "gender": "male",
     "exclude": ["enora-corlay"],
     "archived": true
   },
@@ -90,18 +104,21 @@
     "id": "denis-blum",
     "email": "blumdenis@aol.com",
     "firstname": "Denis",
-    "lastname": "Blum"
+    "lastname": "Blum",
+    "gender": "male"
   },
   {
     "id": "dimitri-cobb",
     "firstname": "Dimitri",
     "lastname": "Cobb",
+    "gender": "male",
     "archived": true
   },
   {
     "id": "dwight-bornes",
     "firstname": "Dwight",
     "lastname": "Bornes",
+    "gender": "male",
     "archived": true
   },
   {
@@ -109,6 +126,7 @@
     "email": "exbrayatpv@gmail.com",
     "firstname": "Elia-Grace",
     "lastname": "Exbrayat",
+    "gender": "female",
     "age": "10-13"
   },
   {
@@ -116,18 +134,21 @@
     "email": "elona.caparros@icould.com",
     "firstname": "Elona",
     "lastname": "Caparros",
+    "gender": "female",
     "age": "14-17"
   },
   {
     "id": "elsa-lelieu",
     "email": "elsamon@hotmail.fr",
     "firstname": "Elsa",
-    "lastname": "Lelieu"
+    "lastname": "Lelieu",
+    "gender": "female"
   },
   {
     "id": "enora-corlay",
     "firstname": "Énora",
     "lastname": "Corlay",
+    "gender": "female",
     "exclude": ["david-bourgeois"],
     "archived": true
   },
@@ -135,6 +156,7 @@
     "id": "etienne-gerber",
     "firstname": "Étienne",
     "lastname": "Gerber",
+    "gender": "male",
     "archived": true
   },
   {
@@ -142,66 +164,77 @@
     "email": "etiennesarran@gmail.com",
     "firstname": "Etienne",
     "lastname": "Sarran",
+    "gender": "male",
     "age": "14-17"
   },
   {
     "id": "fabrice-lingois",
     "email": "lingois.fabrice@hotmail.fr",
     "firstname": "Fabrice",
-    "lastname": "Lingois"
+    "lastname": "Lingois",
+    "gender": "male"
   },
   {
     "id": "flora-julien",
     "firstname": "Flora",
     "lastname": "Julien",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "florian-vincenzi",
     "email": "vincenzi.florian@gmail.com",
     "firstname": "Florian",
-    "lastname": "Vincenzi"
+    "lastname": "Vincenzi",
+    "gender": "male"
   },
   {
     "id": "francois-risson",
     "email": "francoisrisson@gmail.com",
     "firstname": "François",
-    "lastname": "Risson"
+    "lastname": "Risson",
+    "gender": "male"
   },
   {
     "id": "gabrielle-ziegler",
     "email": "gabi@zieglers.org",
     "firstname": "Gabriëlle",
-    "lastname": "Ziegler"
+    "lastname": "Ziegler",
+    "gender": "female"
   },
   {
     "id": "gilles-campoy",
     "email": "gillescampoy42@gmail.com",
     "firstname": "Gilles",
-    "lastname": "Campoy"
+    "lastname": "Campoy",
+    "gender": "male"
   },
   {
     "id": "helene-bazille",
     "email": "helene@bazille.fr",
     "firstname": "Hélène",
-    "lastname": "Bazille"
+    "lastname": "Bazille",
+    "gender": "female"
   },
   {
     "id": "hyun-joo-exbrayat",
     "email": "exbrayatpv@gmail.com",
     "firstname": "Hyun-Joo",
-    "lastname": "Exbrayat"
+    "lastname": "Exbrayat",
+    "gender": "female"
   },
   {
     "id": "isaque-carreto",
     "firstname": "Isaque",
     "lastname": "Carreto",
+    "gender": "male",
     "archived": true
   },
   {
     "id": "ivan-hamelin",
     "firstname": "Ivan",
     "lastname": "Hamelin",
+    "gender": "male",
     "age": "14-17",
     "archived": true
   },
@@ -209,129 +242,150 @@
     "id": "jean-francois-chanel",
     "email": "sabine.chanel@laposte.net",
     "firstname": "Jean-François",
-    "lastname": "Chanel"
+    "lastname": "Chanel",
+    "gender": "male"
   },
   {
     "id": "jean-francois-maniere",
     "email": "jf.maniere@orange.fr",
     "firstname": "Jean-François",
-    "lastname": "Manière"
+    "lastname": "Manière",
+    "gender": "male"
   },
   {
     "id": "jeanne-guilhot",
     "email": "Guilhot.jeanne@gmail.com",
     "firstname": "Jeanne",
-    "lastname": "Guilhot"
+    "lastname": "Guilhot",
+    "gender": "female"
   },
   {
     "id": "jeronimo-avellaneda",
     "email": "jeronimoavellaneda21@gmail.com",
     "firstname": "Jerónimo",
     "lastname": "Avellaneda",
+    "gender": "male",
     "age": "10-13"
   },
   {
     "id": "jonah-haddad",
     "firstname": "Jonah",
     "lastname": "Haddad",
+    "gender": "male",
     "archived": true
   },
   {
     "id": "joshua-sims",
     "firstname": "Joshua",
     "lastname": "Sims",
+    "gender": "male",
     "archived": true
   },
   {
     "id": "jung-yeon-gosselin",
     "firstname": "Jung-Yeon",
     "lastname": "Gosselin",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "kalhou-vang",
     "firstname": "Kalhou",
     "lastname": "Vang",
+    "gender": "male",
     "archived": true
   },
   {
     "id": "karine-comte",
     "firstname": "Karine",
     "lastname": "Comte",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "kenneth-ziegler",
     "email": "ken@zieglers.org",
     "firstname": "Kenneth",
-    "lastname": "Ziegler"
+    "lastname": "Ziegler",
+    "gender": "male"
   },
   {
     "id": "laetitia-calabria",
     "email": "calabrialaetitia@gmail.com",
     "firstname": "Laetitia",
-    "lastname": "Calabria"
+    "lastname": "Calabria",
+    "gender": "female"
   },
   {
     "id": "laetitia-grare",
     "firstname": "Laetitia",
     "lastname": "Grare",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "laetitia-stauffer",
     "email": "staufferlaetitia@gmail.com",
     "firstname": "Laetitia",
-    "lastname": "Stauffer"
+    "lastname": "Stauffer",
+    "gender": "female"
   },
   {
     "id": "lars-fracheboud",
     "email": "highestpeak.fr@gmail.com",
     "firstname": "Lars",
-    "lastname": "Fracheboud"
+    "lastname": "Fracheboud",
+    "gender": "male"
   },
   {
     "id": "laurent-caparros",
     "email": "lm.caparros@wanadoo.fr",
     "firstname": "Laurent",
-    "lastname": "Caparros"
+    "lastname": "Caparros",
+    "gender": "male"
   },
   {
     "id": "lenora-haddad",
     "firstname": "Lenora",
     "lastname": "Haddad",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "linda-hamelin",
     "email": "lzhamelin@gmail.com",
     "firstname": "Linda",
-    "lastname": "Hamelin"
+    "lastname": "Hamelin",
+    "gender": "female"
   },
   {
     "id": "lois-bazille",
     "email": "helene@bazille.fr",
     "firstname": "Loïs",
     "lastname": "Bazille",
+    "gender": "female",
     "age": "6-9"
   },
   {
     "id": "lucy-nemoz",
     "email": "lucynemoz@gmail.com",
     "firstname": "Lucy",
-    "lastname": "Nemoz"
+    "lastname": "Nemoz",
+    "gender": "female"
   },
   {
     "id": "lycia-francais",
     "email": "lycia.francais@gmail.com",
     "firstname": "Lycia",
-    "lastname": "French"
+    "lastname": "French",
+    "gender": "female"
   },
   {
     "id": "lydie-exbrayat",
     "email": "exbrayatpv@gmail.com",
     "firstname": "Lydie",
     "lastname": "Exbrayat",
+    "gender": "female",
     "age": "14-17"
   },
   {
@@ -339,24 +393,28 @@
     "email": "helene@bazille.fr",
     "firstname": "Madèle",
     "lastname": "Bazille",
+    "gender": "female",
     "age": "6-9"
   },
   {
     "id": "mailys-blum",
     "email": "mailysvenet@gmail.com",
     "firstname": "Mailys",
-    "lastname": "Blum"
+    "lastname": "Blum",
+    "gender": "female"
   },
   {
     "id": "marc-descheemaecker",
     "email": "marc.descheemaecker3@gmail.com",
     "firstname": "Marc",
-    "lastname": "Descheemaecker"
+    "lastname": "Descheemaecker",
+    "gender": "male"
   },
   {
     "id": "margaret-haddad",
     "firstname": "Margaret",
     "lastname": "Haddad",
+    "gender": "female",
     "age": "10-13",
     "archived": true
   },
@@ -364,12 +422,14 @@
     "id": "marie-jo-descheemaecker",
     "email": "mariejoseedesch@gmail.com",
     "firstname": "Marie-Jo",
-    "lastname": "Descheemaecker"
+    "lastname": "Descheemaecker",
+    "gender": "female"
   },
   {
     "id": "marie-julien",
     "firstname": "Marie",
     "lastname": "Julien",
+    "gender": "female",
     "age": "10-13",
     "archived": true
   },
@@ -377,54 +437,63 @@
     "id": "marie-noelle-gerber",
     "firstname": "Marie-Noëlle",
     "lastname": "Gerber",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "mathilde-portmann",
     "email": "portmannmahilde@yahoo.fr",
     "firstname": "Mathilde",
-    "lastname": "Portmann"
+    "lastname": "Portmann",
+    "gender": "female"
   },
   {
     "id": "matthieu-sarran",
     "firstname": "Matthieu",
     "lastname": "Sarran",
+    "gender": "male",
     "archived": true
   },
   {
     "id": "mireille-yoyotte-landry",
     "firstname": "Mireille",
     "lastname": "Yoyotte Landry",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "myriam-caparros",
     "email": "myriamcap@free.fr",
     "firstname": "Myriam",
-    "lastname": "Caparros"
+    "lastname": "Caparros",
+    "gender": "female"
   },
   {
     "id": "naomi-vigne",
     "email": "nao.vigne@gmail.com",
     "firstname": "Naomi",
-    "lastname": "Vigné"
+    "lastname": "Vigné",
+    "gender": "female"
   },
   {
     "id": "nathalie-merlano",
     "email": "nathaliemerlano@hotmail.com",
     "firstname": "Nathalie",
-    "lastname": "Merlano"
+    "lastname": "Merlano",
+    "gender": "female"
   },
   {
     "id": "orlane-batman",
     "firstname": "Orlane",
     "lastname": "Batman",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "pascal-haddad",
     "firstname": "Pascal",
     "lastname": "Haddad",
+    "gender": "male",
     "age": "10-13",
     "archived": true
   },
@@ -432,72 +501,84 @@
     "id": "pierrick-fournier",
     "firstname": "Pierrick",
     "lastname": "Fournier",
+    "gender": "male",
     "archived": true
   },
   {
     "id": "qiqi-zhu",
     "email": "qiqizhu2020@outlook.com",
     "firstname": "Qiqi",
-    "lastname": "Zhu"
+    "lastname": "Zhu",
+    "gender": "female"
   },
   {
     "id": "rafaella-bartz-pena",
     "firstname": "Rafaella",
     "lastname": "Bartz Pena",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "sabine-chanel",
     "email": "sabine.chanel@laposte.net",
     "firstname": "Sabine",
-    "lastname": "Chanel"
+    "lastname": "Chanel",
+    "gender": "female"
   },
   {
     "id": "solange-de-melo",
     "firstname": "Solange",
     "lastname": "De Melo",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "soohyun-vang",
     "firstname": "Soohyun",
     "lastname": "Vang",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "sophie-vincenzi",
     "email": "sophie.dellacorte@outlook.com",
     "firstname": "Sophie",
-    "lastname": "Vincenzi"
+    "lastname": "Vincenzi",
+    "gender": "female"
   },
   {
     "id": "stephane-hamelin",
     "email": "hamelinsteph@gmail.com",
     "firstname": "Stéphane",
-    "lastname": "Hamelin"
+    "lastname": "Hamelin",
+    "gender": "male"
   },
   {
     "id": "suzanne-sarran",
     "email": "sarransuzanne@gmail.com",
     "firstname": "Suzanne",
-    "lastname": "Sarran"
+    "lastname": "Sarran",
+    "gender": "female"
   },
   {
     "id": "tehele-mpassi",
     "firstname": "Tehele",
     "lastname": "Mpassi",
+    "gender": "male",
     "archived": true
   },
   {
     "id": "teresa-carreto",
     "firstname": "Teresa",
     "lastname": "Carreto",
+    "gender": "female",
     "archived": true
   },
   {
     "id": "theotime-julien",
     "firstname": "Théotime",
     "lastname": "Julien",
+    "gender": "male",
     "age": "14-17",
     "archived": true
   },
@@ -505,6 +586,7 @@
     "id": "thierry-comte",
     "firstname": "Thierry",
     "lastname": "Comte",
+    "gender": "male",
     "archived": true
   },
   {
@@ -512,6 +594,7 @@
     "email": "exbrayatpv@gmail.com",
     "firstname": "Timothée",
     "lastname": "Exbrayat",
+    "gender": "male",
     "age": "14-17"
   },
   {
@@ -519,12 +602,14 @@
     "email": "sarrantimothee@gmail.com",
     "firstname": "Timothée",
     "lastname": "Sarran",
+    "gender": "male",
     "age": "14-17"
   },
   {
     "id": "timothee-vang",
     "firstname": "Timothée",
     "lastname": "Vang",
+    "gender": "male",
     "age": "10-13",
     "archived": true
   },
@@ -532,18 +617,21 @@
     "id": "tom-kristanek",
     "firstname": "Tom",
     "lastname": "Kristanek",
+    "gender": "male",
     "archived": true
   },
   {
     "id": "toyese-oyegoke",
     "firstname": "Toyese",
     "lastname": "Oyegoke",
+    "gender": "male",
     "archived": true
   },
   {
     "id": "trina-collet",
     "firstname": "Trina",
     "lastname": "Collet",
+    "gender": "female",
     "archived": true
   },
   {
@@ -551,12 +639,14 @@
     "email": "Vallouisesarran@gmail.com",
     "firstname": "Vallouise",
     "lastname": "Sarran",
+    "gender": "female",
     "age": "10-13"
   },
   {
     "id": "vincent-collet",
     "firstname": "Vincent",
     "lastname": "Collet",
+    "gender": "male",
     "archived": true
   },
   {
@@ -564,6 +654,7 @@
     "email": "alexsarran@gmail.com",
     "firstname": "Violette",
     "lastname": "Sarran",
+    "gender": "female",
     "age": "6-9"
   },
   {
@@ -571,18 +662,21 @@
     "email": "myriamcap@free.fr",
     "firstname": "Yahel",
     "lastname": "Caparros",
+    "gender": "male",
     "age": "14-17"
   },
   {
     "id": "yi-hsuan-chen",
     "email": "artist5818@gmail.com",
     "firstname": "Yi-Hsuan",
-    "lastname": "Chen"
+    "lastname": "Chen",
+    "gender": "female"
   },
   {
     "id": "yvette-campoy",
     "email": "yvettecampoy@hotmail.com",
     "firstname": "Yvette",
-    "lastname": "Campoy"
+    "lastname": "Campoy",
+    "gender": "female"
   }
 ]

@@ -48,15 +48,5 @@
     "format-check": "prettier --check --ignore-unknown '**/*'",
     "prepare": "husky install",
     "test": "jest"
-  },
-  "lint-staged": {
-    "*.{js,ts}": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*": [
-      "prettier --write --ignore-unknown",
-      "git add"
-    ]
   }
 }

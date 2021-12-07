@@ -8,7 +8,7 @@ import { AgeRange, PersonData } from '../types';
 import { Arguments, Argv, CommandModule } from 'yargs';
 import { parse } from 'papaparse';
 
-type PersonEntry = Pick<PersonData, 'email' | 'firstname' | 'lastname' | 'age'>;
+type PersonEntry = Pick<PersonData, 'email' | 'firstname' | 'lastname' | 'gender' | 'age'>;
 
 interface Props {
   batch?: string;
@@ -43,13 +43,14 @@ async function confirm(message: string) {
   ).ok;
 }
 
-function addPerson({ email, firstname, lastname, age }: PersonEntry) {
+function addPerson({ email, firstname, lastname, age, gender }: PersonEntry) {
   const data = {
     id: _.kebabCase(`${firstname} ${lastname}`),
     email,
     firstname,
     lastname,
     ...(age === AgeRange['18+'] ? {} : { age }),
+    gender,
   };
 
   const index = _.findIndex(persons, ['id', data.id]);
@@ -82,6 +83,15 @@ async function manualHandler() {
       message: 'Nom',
     },
     {
+      name: 'gender',
+      message: 'Gender',
+      type: 'list',
+      choices: [
+        { name: 'Homme', value: 'male' },
+        { name: 'Femme', value: 'female' },
+      ],
+    },
+    {
       name: 'email',
       message: 'Email',
     },
@@ -98,6 +108,7 @@ async function manualHandler() {
     email: string;
     firstname: string;
     lastname: string;
+    gender: 'male' | 'female';
     age: AgeRange;
   }>(questions);
 
