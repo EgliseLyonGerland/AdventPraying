@@ -4,7 +4,7 @@ import { prompt, QuestionCollection } from 'inquirer';
 import { format } from 'prettier';
 import _, { camelCase, capitalize, deburr } from 'lodash';
 import { data as persons } from '../data/persons';
-import { AgeRange, PersonData } from '../types';
+import { AgeRange, defaultAgeRange, PersonData } from '../types';
 import { Arguments, Argv, CommandModule } from 'yargs';
 import { parse } from 'papaparse';
 
@@ -49,8 +49,8 @@ function addPerson({ email, firstname, lastname, age, gender }: PersonEntry) {
     email,
     firstname,
     lastname,
-    ...(age === AgeRange['18+'] ? {} : { age }),
     gender,
+    ...(age === defaultAgeRange ? {} : { age }),
   };
 
   const index = _.findIndex(persons, ['id', data.id]);
@@ -100,7 +100,7 @@ async function manualHandler() {
       message: 'Enfant',
       type: 'list',
       choices: Object.values(AgeRange),
-      default: AgeRange['18+'],
+      default: defaultAgeRange,
     },
   ];
 

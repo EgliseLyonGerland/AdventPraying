@@ -1,13 +1,13 @@
 import fs from 'fs';
 import path from 'path';
-import { AgeRange, Person, PersonData, PersonId } from '../../types';
+import { defaultAgeRange, Person, PersonData, PersonId } from '../../types';
 
 export const data = JSON.parse(
   fs.readFileSync(path.join(__dirname, 'data.json')).toString(),
 ) as PersonData[];
 
 export const all: Person[] = data.map((item) => ({
-  age: AgeRange['18+'],
+  age: defaultAgeRange,
   exclude: [],
   archived: false,
   ...item,

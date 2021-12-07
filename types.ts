@@ -7,6 +7,8 @@ export enum AgeRange {
   '18+' = '18+',
 }
 
+export const defaultAgeRange = AgeRange['18+'];
+
 export interface PersonData {
   id: PersonId;
   email: string;
