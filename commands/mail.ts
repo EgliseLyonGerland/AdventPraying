@@ -9,11 +9,11 @@ import { prompt } from 'inquirer';
 import chalk from 'chalk';
 import ora from 'ora';
 
-type MailKind = 'end' | 'who';
+type TemplateName = 'end' | 'who';
 
 interface Props {
   year: number;
-  kind: MailKind;
+  template: TemplateName | undefined;
 }
 
 interface Template {
@@ -21,7 +21,7 @@ interface Template {
   body: string;
 }
 
-const templates: Record<MailKind, Template> = {
+const templates: Record<TemplateName, Template> = {
   end: {
     subject: "C'est fini !",
     body: `
@@ -59,7 +59,7 @@ Nicolas.
   },
 };
 
-const command = `mail <kind>`;
+const command = `mail [template]`;
 const describe = 'Prepare mail to send';
 
 function sendMail({
@@ -89,11 +89,11 @@ function sendMail({
 
 function builder(yargs: Argv): Argv<Props> {
   return yargs
-    .positional('kind', {
+    .positional('template', {
       desc: 'Define the kind of mail to send',
       type: 'string',
-      default: 'end' as MailKind,
-      choices: ['end', 'who'] as MailKind[],
+      default: undefined,
+      choices: ['end', 'who'],
     })
     .option('year', {
       alias: 'y',
@@ -127,7 +127,7 @@ function generate(template: Template, year: number, player: Person): Template {
   };
 }
 
-async function handler({ year, kind }: Arguments<Props>) {
+async function handler({ year, template: templateName }: Arguments<Props>) {
   if (!(year in draws)) {
     throw new Error(`Draw ${year} not found`);
   }
@@ -153,18 +153,23 @@ async function handler({ year, kind }: Arguments<Props>) {
     return;
   }
 
-  let template = templates[kind];
+  let template: Template | null = null;
+  if (templateName) {
+    template = templates[templateName];
+  }
+
   const firstPlayer = players[0];
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    const example = generate(template, year, firstPlayer);
+    if (template) {
+      const example = generate(template, year, firstPlayer);
 
-    const action = await ask({
-      type: 'list',
-      message: `Voilà à quoi ressemblera le mail qui sera envoyé à ${firstPlayer.firstname} ${
-        firstPlayer.lastname
-      }.
+      const action = await ask({
+        type: 'list',
+        message: `Voilà à quoi ressemblera le mail qui sera envoyé à ${firstPlayer.firstname} ${
+          firstPlayer.lastname
+        }.
 
 ${chalk.yellowBright(example.subject)}
 
@@ -174,15 +179,16 @@ ${chalk.greenBright(example.body)}
 
 Voulez-vous continuer ?
 `,
-      choices: ['Continue', 'Edit', 'Quit'],
-    });
+        choices: ['Continue', 'Edit', 'Quit'],
+      });
 
-    if (action === 'Quit') {
-      process.exit(0);
-    }
+      if (action === 'Quit') {
+        process.exit(0);
+      }
 
-    if (action === 'Continue') {
-      break;
+      if (action === 'Continue') {
+        break;
+      }
     }
 
     template = await prompt<{
@@ -193,13 +199,13 @@ Voulez-vous continuer ?
         type: 'input',
         name: 'subject',
         message: 'Sujet',
-        default: template.subject,
+        default: template?.subject,
       },
       {
         type: 'editor',
         name: 'body',
         message: 'Contenu',
-        default: template.body.trim(),
+        default: template?.body.trim(),
       },
     ]);
   }
@@ -229,7 +235,7 @@ Voulez-vous continuer ?
 
   players.forEach((player, index) => {
     chain = chain.then(() => {
-      const { subject, body } = generate(template, year, player);
+      const { subject, body } = generate(template as Template, year, player);
 
       spinner.text = `${index + 1}/${players.length}`;
 
