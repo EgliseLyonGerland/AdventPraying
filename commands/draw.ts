@@ -1,7 +1,6 @@
 import { map } from 'lodash';
 import fs from 'fs';
 import path from 'path';
-import { DistinctQuestion, prompt } from 'inquirer';
 import termSize from 'term-size';
 import { Argv, Arguments, CommandModule } from 'yargs';
 
@@ -9,6 +8,7 @@ import persons from '../data/persons';
 import draws from '../data/draws';
 import { Draw, Person } from '../types';
 import { letsDraw } from './utils/draw';
+import { ask, confirm } from './utils/prompt';
 
 interface Props {
   year: number;
@@ -17,14 +17,6 @@ interface Props {
 const command = `draw`;
 const describe = "Let's draw";
 
-async function ask<T>(options: DistinctQuestion) {
-  const { answer } = await prompt<{
-    answer: T;
-  }>([{ ...options, name: 'answer' }]);
-
-  return answer || null;
-}
-
 const builder = (yargs: Argv): Argv<Props> =>
   yargs.option('year', {
     alias: 'y',
@@ -32,13 +24,6 @@ const builder = (yargs: Argv): Argv<Props> =>
     type: 'number',
     default: new Date().getFullYear(),
     demandOption: true,
-  });
-
-const confirm = (message: string) =>
-  ask({
-    name: 'continue',
-    type: 'confirm',
-    message,
   });
 
 const handler = async ({ year }: Arguments<Props>) => {

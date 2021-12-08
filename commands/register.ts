@@ -7,6 +7,7 @@ import { data as persons } from '../data/persons';
 import { AgeRange, defaultAgeRange, PersonData } from '../types';
 import { Arguments, Argv, CommandModule } from 'yargs';
 import { parse } from 'papaparse';
+import { confirm } from './utils/prompt';
 
 type PersonEntry = Pick<PersonData, 'email' | 'firstname' | 'lastname' | 'gender' | 'age'>;
 
@@ -31,16 +32,6 @@ function builder(yargs: Argv): Argv<Props> {
     desc: 'Path to batch',
     type: 'string',
   });
-}
-
-async function confirm(message: string) {
-  return (
-    await prompt<{ ok: boolean }>({
-      name: 'ok',
-      type: 'confirm',
-      message,
-    })
-  ).ok;
 }
 
 function addPerson({ email, firstname, lastname, age, gender }: PersonEntry) {
