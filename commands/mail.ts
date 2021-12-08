@@ -12,8 +12,9 @@ import ora from 'ora';
 type TemplateName = 'end' | 'who';
 
 interface Props {
-  year: number;
   template: TemplateName | undefined;
+  year: number;
+  grouped: boolean;
 }
 
 interface Template {
@@ -100,6 +101,11 @@ function builder(yargs: Argv): Argv<Props> {
       desc: 'Year',
       type: 'number',
       default: new Date().getFullYear(),
+    })
+    .option('grouped', {
+      desc: 'Send one mail putting addresses in BCC field',
+      type: 'boolean',
+      default: false,
     });
 }
 
@@ -127,7 +133,11 @@ function generate(template: Template, year: number, player: Person): Template {
   };
 }
 
-async function handler({ year, template: templateName }: Arguments<Props>) {
+function isStatic(template: Template) {
+  return !/%[\w.]+%/.test(`${template.subject} ${template.body}`);
+}
+
+async function handler({ year, template: templateName, grouped }: Arguments<Props>) {
   if (!(year in draws)) {
     throw new Error(`Draw ${year} not found`);
   }
@@ -163,13 +173,43 @@ async function handler({ year, template: templateName }: Arguments<Props>) {
   // eslint-disable-next-line no-constant-condition
   while (true) {
     if (template) {
-      const example = generate(template, year, firstPlayer);
+      let action: string | null = null;
 
-      const action = await ask({
-        type: 'list',
-        message: `Voilà à quoi ressemblera le mail qui sera envoyé à ${firstPlayer.firstname} ${
-          firstPlayer.lastname
-        }.
+      if (grouped && !isStatic(template)) {
+        console.log(
+          chalk.redBright(
+            "\nVotre message contient des éléments personnalisés ce qui n'est pas possible avec mail groupé.\n",
+          ),
+        );
+
+        action = await ask({
+          type: 'list',
+          message: `Que voulez-vous faire ?`,
+          choices: [
+            {
+              name: 'Continuer quand-même',
+              value: 'continue',
+            },
+            {
+              name: 'Modifier',
+              value: 'edit',
+            },
+            {
+              name: 'Quitter',
+              value: 'quit',
+            },
+          ],
+        });
+      }
+
+      if (!action || action === 'continue') {
+        const example = grouped ? template : generate(template, year, firstPlayer);
+
+        action = await ask({
+          type: 'list',
+          message: `Voilà à quoi ressemblera le mail qui sera envoyé ${
+            grouped ? `à ${firstPlayer.firstname} ${firstPlayer.lastname}` : ''
+          }.
 
 ${chalk.yellowBright(example.subject)}
 
@@ -179,14 +219,28 @@ ${chalk.greenBright(example.body)}
 
 Voulez-vous continuer ?
 `,
-        choices: ['Continue', 'Edit', 'Quit'],
-      });
+          choices: [
+            {
+              name: 'Continuer',
+              value: 'continue',
+            },
+            {
+              name: 'Modifier',
+              value: 'edit',
+            },
+            {
+              name: 'Quitter',
+              value: 'quit',
+            },
+          ],
+        });
+      }
 
-      if (action === 'Quit') {
+      if (action === 'quit') {
         process.exit(0);
       }
 
-      if (action === 'Continue') {
+      if (action === 'continue') {
         break;
       }
     }
@@ -221,9 +275,9 @@ Voulez-vous continuer ?
 
   if (
     !(await confirm(
-      `Maintenant êtes-vous prêt à envoyer un mail à ${players.length} personne${
-        players.length > 1 ? 's' : ''
-      } ?`,
+      `Maintenant êtes-vous prêt à envoyer un mail${grouped ? ' groupé' : ''} à ${
+        players.length
+      } personne${players.length > 1 ? 's' : ''} ?`,
     ))
   ) {
     return;
@@ -231,25 +285,31 @@ Voulez-vous continuer ?
 
   const spinner = ora({ prefixText: 'Envoi' }).start();
 
-  let chain = Promise.resolve<unknown>(null);
+  if (grouped) {
+    const recipients = players.map((player) => player.email);
+    await sendMail({ recipients, ...template });
+    spinner.succeed();
+  } else {
+    let chain = Promise.resolve<unknown>(null);
 
-  players.forEach((player, index) => {
-    chain = chain.then(() => {
-      const { subject, body } = generate(template as Template, year, player);
+    players.forEach((player, index) => {
+      chain = chain.then(() => {
+        const { subject, body } = generate(template as Template, year, player);
 
-      spinner.text = `${index + 1}/${players.length}`;
+        spinner.text = `${index + 1}/${players.length}`;
 
-      return sendMail({
-        recipients: [player.email],
-        subject,
-        body,
+        return sendMail({
+          recipients: [player.email],
+          subject,
+          body,
+        });
       });
     });
-  });
 
-  await chain.then(() => {
-    spinner.succeed();
-  });
+    await chain.then(() => {
+      spinner.succeed();
+    });
+  }
 }
 
 const commandModule: CommandModule<unknown, Props> = {

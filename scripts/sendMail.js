@@ -61,7 +61,7 @@ app.includeStandardAdditions = true;
 const mail = Application('Mail');
 
 const sender = app.systemAttribute('sender');
-const recipients = app.systemAttribute('recipients');
+const recipients = app.systemAttribute('recipients').split(',');
 const subject = convert(app.systemAttribute('subject'));
 const content = convert(app.systemAttribute('body'));
 
@@ -69,9 +69,14 @@ const msg = mail.OutgoingMessage({ sender, subject, content });
 
 mail.outgoingMessages.push(msg);
 
-const rcpt = mail.Recipient({
-  address: recipients,
-});
+if (recipients.length > 1) {
+  recipients.forEach((address) => {
+    const recipient = mail.Recipient({ address });
+    msg.bccRecipients.push(recipient);
+  });
+} else {
+  const recipient = mail.Recipient({ address: recipients[0] });
+  msg.toRecipients.push(recipient);
+}
 
-msg.toRecipients.push(rcpt);
 msg.send();
