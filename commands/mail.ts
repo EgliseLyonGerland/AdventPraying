@@ -109,26 +109,31 @@ function builder(yargs: Argv): Argv<Props> {
     });
 }
 
-function generate(template: Template, year: number, player: Person): Template {
+function generate(template: Template, year: number, player?: Person): Template {
   const draw = draws[year];
-  const dest = persons[draw[player.id]];
 
-  const replace = (text: string) =>
-    text
-      .replace(/%src.firstname%/g, player.firstname)
-      .replace(/%src.lastname%/g, player.lastname)
-      .replace(/%src.lastname%/g, player.lastname)
-      .replace(/%dst.firstname%/g, dest.firstname)
-      .replace(/%dst.lastname%/g, dest.lastname)
-      .replace(/%dst.pronoun%/g, dest.gender === 'male' ? 'lui' : 'elle')
-      .replace(/%year%/g, String(year))
-      .replace(/%nextYear%/g, String(year + 1));
+  let { subject, body } = template;
 
-  const subject = replace(template.subject);
-  const body = replace(template.body);
+  if (player) {
+    const dest = persons[draw[player.id]];
+
+    const replace = (text: string) =>
+      text
+        .replace(/%src.firstname%/g, player.firstname)
+        .replace(/%src.lastname%/g, player.lastname)
+        .replace(/%src.lastname%/g, player.lastname)
+        .replace(/%dst.firstname%/g, dest.firstname)
+        .replace(/%dst.lastname%/g, dest.lastname)
+        .replace(/%dst.pronoun%/g, dest.gender === 'male' ? 'lui' : 'elle')
+        .replace(/%year%/g, String(year))
+        .replace(/%nextYear%/g, String(year + 1));
+
+    subject = replace(template.subject);
+    body = replace(template.body);
+  }
 
   return {
-    subject: `${subject} ~~ En Avent la prière ! ~~`,
+    subject: `${subject} ~~En Avent la prière !~~`,
     body,
   };
 }
@@ -163,22 +168,27 @@ async function handler({ year, template: templateName, grouped }: Arguments<Prop
     return;
   }
 
-  let template: Template | null = null;
+  const firstPlayer = players[0];
+
+  let template: Template | null = { subject: '', body: '' };
+  let action: string | null = 'edit';
+
   if (templateName) {
     template = templates[templateName];
+    action = 'start';
   }
-
-  const firstPlayer = players[0];
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    if (template) {
-      let action: string | null = null;
+    if (action === 'quit') {
+      break;
+    }
 
+    if (action === 'start') {
       if (grouped && !isStatic(template)) {
         console.log(
           chalk.redBright(
-            "\nVotre message contient des éléments personnalisés ce qui n'est pas possible avec mail groupé.\n",
+            "\nVotre message contient des éléments personnalisés ce qui n'est pas possible avec les mails groupés.\n",
           ),
         );
 
@@ -188,7 +198,7 @@ async function handler({ year, template: templateName, grouped }: Arguments<Prop
           choices: [
             {
               name: 'Continuer quand-même',
-              value: 'continue',
+              value: 'check',
             },
             {
               name: 'Modifier',
@@ -200,16 +210,44 @@ async function handler({ year, template: templateName, grouped }: Arguments<Prop
             },
           ],
         });
+      } else {
+        action = 'check';
       }
 
-      if (!action || action === 'continue') {
-        const example = grouped ? template : generate(template, year, firstPlayer);
+      continue;
+    }
 
-        action = await ask({
-          type: 'list',
-          message: `Voilà à quoi ressemblera le mail qui sera envoyé ${
-            grouped ? `à ${firstPlayer.firstname} ${firstPlayer.lastname}` : ''
-          }.
+    if (action === 'edit') {
+      template = await prompt<{
+        subject: string;
+        body: string;
+      }>([
+        {
+          type: 'input',
+          name: 'subject',
+          message: 'Sujet',
+          default: template?.subject || undefined,
+        },
+        {
+          type: 'editor',
+          name: 'body',
+          message: 'Contenu',
+          default: template?.body.trim() || undefined,
+        },
+      ]);
+
+      action = 'start';
+      continue;
+    }
+
+    if (action === 'check') {
+      const example = generate(template, year, !grouped ? firstPlayer : undefined);
+
+      action = await ask({
+        type: 'list',
+        message: `Voilà à quoi ressemblera le mail qui sera envoyé${
+          !grouped ? ` à ${firstPlayer.firstname} ${firstPlayer.lastname}` : ''
+        }.
 
 ${chalk.yellowBright(example.subject)}
 
@@ -219,97 +257,93 @@ ${chalk.greenBright(example.body)}
 
 Voulez-vous continuer ?
 `,
-          choices: [
-            {
-              name: 'Continuer',
-              value: 'continue',
-            },
-            {
-              name: 'Modifier',
-              value: 'edit',
-            },
-            {
-              name: 'Quitter',
-              value: 'quit',
-            },
-          ],
-        });
-      }
+        choices: [
+          {
+            name: 'Continuer',
+            value: 'sendTest',
+          },
+          {
+            name: 'Modifier',
+            value: 'edit',
+          },
+          {
+            name: 'Quitter',
+            value: 'quit',
+          },
+        ],
+      });
 
-      if (action === 'quit') {
-        process.exit(0);
-      }
-
-      if (action === 'continue') {
-        break;
-      }
+      continue;
     }
 
-    template = await prompt<{
-      subject: string;
-      body: string;
-    }>([
-      {
-        type: 'input',
-        name: 'subject',
-        message: 'Sujet',
-        default: template?.subject,
-      },
-      {
-        type: 'editor',
-        name: 'body',
-        message: 'Contenu',
-        default: template?.body.trim(),
-      },
-    ]);
-  }
+    if (action === 'sendTest') {
+      if (await confirm(`Voulez-vous envoyer un mail de test avant ?`)) {
+        const address = await ask<string>({ message: 'Adresse' });
+        const example = generate(template, year, !grouped ? firstPlayer : undefined);
 
-  if (await confirm(`Voulez-vous envoyer un mail de test avant ?`)) {
-    const address = await ask<string>({ message: 'Adresse' });
-    const example = generate(template, year, firstPlayer);
+        const spinner = ora('Envoi').start();
+        await sendMail({ recipients: [address || ''], ...example });
+        spinner.succeed();
+      }
 
-    const spinner = ora('Envoi').start();
-    await sendMail({ recipients: [address || ''], ...example });
-    spinner.succeed();
-  }
-
-  if (
-    !(await confirm(
-      `Maintenant êtes-vous prêt à envoyer un mail${grouped ? ' groupé' : ''} à ${
-        players.length
-      } personne${players.length > 1 ? 's' : ''} ?`,
-    ))
-  ) {
-    return;
-  }
-
-  const spinner = ora({ prefixText: 'Envoi' }).start();
-
-  if (grouped) {
-    const recipients = players.map((player) => player.email);
-    await sendMail({ recipients, ...template });
-    spinner.succeed();
-  } else {
-    let chain = Promise.resolve<unknown>(null);
-
-    players.forEach((player, index) => {
-      chain = chain.then(() => {
-        const { subject, body } = generate(template as Template, year, player);
-
-        spinner.text = `${index + 1}/${players.length}`;
-
-        return sendMail({
-          recipients: [player.email],
-          subject,
-          body,
-        });
+      action = await ask({
+        message: `Que voulez-vous faire maintenant ?`,
+        type: 'list',
+        choices: [
+          {
+            name: `Envoyer le mail${grouped ? ' groupé' : ''} à ${players.length} personne${
+              players.length > 1 ? 's' : ''
+            }`,
+            value: 'send',
+          },
+          {
+            name: `Modifier`,
+            value: 'edit',
+          },
+          {
+            name: `Quitter`,
+            value: 'quit',
+          },
+        ],
       });
-    });
 
-    await chain.then(() => {
-      spinner.succeed();
-    });
+      continue;
+    }
+
+    if (action === 'send') {
+      const spinner = ora({ prefixText: 'Envoi' }).start();
+
+      if (grouped) {
+        const recipients = [...new Set(players.map((player) => player.email))];
+        await sendMail({ recipients, ...generate(template, year) });
+        spinner.succeed();
+      } else {
+        let chain = Promise.resolve<unknown>(null);
+
+        players.forEach((player, index) => {
+          chain = chain.then(() => {
+            const { subject, body } = generate(template as Template, year, player);
+
+            spinner.text = `${index + 1}/${players.length}`;
+
+            return sendMail({
+              recipients: [player.email],
+              subject,
+              body,
+            });
+          });
+        });
+
+        await chain.then(() => {
+          spinner.succeed();
+        });
+      }
+
+      break;
+    }
   }
+
+  console.log('Bye 👋');
 }
 
 const commandModule: CommandModule<unknown, Props> = {
