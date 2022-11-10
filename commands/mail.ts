@@ -5,7 +5,7 @@ import { defaultAgeRange, Person } from '../types';
 import { exec } from 'child_process';
 import terminalSize from 'term-size';
 import { ask, confirm } from './utils/prompt';
-import { prompt } from 'inquirer';
+import inquirer from 'inquirer';
 import chalk from 'chalk';
 import ora from 'ora';
 
@@ -218,7 +218,7 @@ async function handler({ year, template: templateName, grouped }: Arguments<Prop
     }
 
     if (action === 'edit') {
-      template = await prompt<{
+      template = await inquirer.prompt<{
         subject: string;
         body: string;
       }>([

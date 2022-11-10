@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { prompt, QuestionCollection } from 'inquirer';
+import inquirer, { QuestionCollection } from 'inquirer';
 import { format } from 'prettier';
 import _, { camelCase, capitalize, deburr } from 'lodash';
 import { data as persons } from '../data/persons';
@@ -95,7 +95,7 @@ async function manualHandler() {
     },
   ];
 
-  const answers = await prompt<{
+  const answers = await inquirer.prompt<{
     email: string;
     firstname: string;
     lastname: string;

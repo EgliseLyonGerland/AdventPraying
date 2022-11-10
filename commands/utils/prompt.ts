@@ -1,7 +1,7 @@
-import { DistinctQuestion, prompt } from 'inquirer';
+import inquirer, { DistinctQuestion } from 'inquirer';
 
 export async function ask<T>(options: DistinctQuestion) {
-  const { answer } = await prompt<{
+  const { answer } = await inquirer.prompt<{
     answer: T;
   }>([{ ...options, name: 'answer' }]);
 
