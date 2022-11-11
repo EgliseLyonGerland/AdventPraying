@@ -2,18 +2,18 @@ import chalk from 'chalk';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
-import drawCommand from './commands/draw.js';
-import mailCommand from './commands/mail.js';
-import pdfCommand from './commands/pdf.js';
-import personsCommand from './commands/persons.js';
+import drawModule from './commands/draw.js';
+import mailModule from './commands/mail.js';
+import pdfModule from './commands/pdf.js';
+import personsModule from './commands/persons.js';
 
 void yargs(hideBin(process.argv))
   .usage('Usage: $0 <command> [options]')
   .locale('en')
-  .command(drawCommand)
-  .command(pdfCommand)
-  .command(mailCommand)
-  .command(personsCommand)
+  .command(drawModule)
+  .command(pdfModule)
+  .command(mailModule)
+  .command(personsModule)
   .demandCommand()
   .epilog(`© Église Lyon Gerland ${new Date().getFullYear()}`)
   .fail((msg, err, argv) => {

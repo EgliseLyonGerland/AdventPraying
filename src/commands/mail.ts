@@ -4,20 +4,14 @@ import chalk from 'chalk';
 import inquirer from 'inquirer';
 import ora from 'ora';
 import terminalSize from 'term-size';
-import { Arguments, Argv, CommandModule } from 'yargs';
 
 import draws from '../data/draws/index.js';
 import { byId as persons } from '../data/persons/index.js';
 import { defaultAgeRange, Person } from '../types.js';
 import { ask, confirm } from './utils/prompt.js';
+import { createModule } from './utils/yargs.js';
 
 type TemplateName = 'end' | 'who';
-
-interface Props {
-  template: TemplateName | undefined;
-  year: number;
-  grouped: boolean;
-}
 
 interface Template {
   subject: string;
@@ -62,9 +56,6 @@ Nicolas.
   },
 };
 
-const command = `mail [template]`;
-const describe = 'Prepare mail to send';
-
 function sendMail({
   recipients,
   subject,
@@ -88,27 +79,6 @@ function sendMail({
       resolve,
     );
   });
-}
-
-function builder(yargs: Argv): Argv<Props> {
-  return yargs
-    .positional('template', {
-      desc: 'Define the kind of mail to send',
-      type: 'string',
-      default: undefined,
-      choices: ['end', 'who'],
-    })
-    .option('year', {
-      alias: 'y',
-      desc: 'Year',
-      type: 'number',
-      default: new Date().getFullYear(),
-    })
-    .option('grouped', {
-      desc: 'Send one mail putting addresses in BCC field',
-      type: 'boolean',
-      default: false,
-    });
 }
 
 function generate(template: Template, year: number, player?: Person): Template {
@@ -144,63 +114,149 @@ function isStatic(template: Template) {
   return !/%[\w.]+%/.test(`${template.subject} ${template.body}`);
 }
 
-async function handler({ year, template: templateName, grouped }: Arguments<Props>) {
-  if (!(year in draws)) {
-    throw new Error(`Draw ${year} not found`);
-  }
+const commandModule = createModule({
+  command: 'mail [template]',
+  describe: 'Prepare mail to send',
 
-  const { rows } = terminalSize();
-  const draw = draws[year];
+  builder: (argv) =>
+    argv
+      .positional('template', {
+        desc: 'Define the kind of mail to send',
+        type: 'string',
+        default: undefined,
+        choices: ['end', 'who'],
+      })
+      .option('year', {
+        alias: 'y',
+        desc: 'Year',
+        type: 'number',
+        default: new Date().getFullYear(),
+      })
+      .option('grouped', {
+        desc: 'Send one mail putting addresses in BCC field',
+        type: 'boolean',
+        default: false,
+      }),
 
-  const players =
-    (await ask<Person[]>({
-      type: 'checkbox',
-      message: 'Select the recipients',
-      choices: Object.keys(draw)
-        .map((personId) => persons[personId])
-        .map((person) => ({
-          value: person,
-          name: `${person.firstname} ${person.lastname} (${person.age || defaultAgeRange})`,
-          checked: true,
-        })),
-      pageSize: Math.max(10, rows - 10),
-    })) || [];
-
-  if (!players.length) {
-    return;
-  }
-
-  const firstPlayer = players[0];
-
-  let template: Template | null = { subject: '', body: '' };
-  let action: string | null = 'edit';
-
-  if (templateName) {
-    template = templates[templateName];
-    action = 'start';
-  }
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    if (action === 'quit') {
-      break;
+  handler: async ({ year, template: templateName, grouped }) => {
+    if (!(year in draws)) {
+      throw new Error(`Draw ${year} not found`);
     }
 
-    if (action === 'start') {
-      if (grouped && !isStatic(template)) {
-        console.log(
-          chalk.redBright(
-            "\nVotre message contient des éléments personnalisés ce qui n'est pas possible avec les mails groupés.\n",
-          ),
-        );
+    const { rows } = terminalSize();
+    const draw = draws[year];
+
+    const players =
+      (await ask<Person[]>({
+        type: 'checkbox',
+        message: 'Select the recipients',
+        choices: Object.keys(draw)
+          .map((personId) => persons[personId])
+          .map((person) => ({
+            value: person,
+            name: `${person.firstname} ${person.lastname} (${person.age || defaultAgeRange})`,
+            checked: true,
+          })),
+        pageSize: Math.max(10, rows - 10),
+      })) || [];
+
+    if (!players.length) {
+      return;
+    }
+
+    const firstPlayer = players[0];
+
+    let template: Template | null = { subject: '', body: '' };
+    let action: string | null = 'edit';
+
+    if (templateName) {
+      template = templates[templateName];
+      action = 'start';
+    }
+
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      if (action === 'quit') {
+        break;
+      }
+
+      if (action === 'start') {
+        if (grouped && !isStatic(template)) {
+          console.log(
+            chalk.redBright(
+              "\nVotre message contient des éléments personnalisés ce qui n'est pas possible avec les mails groupés.\n",
+            ),
+          );
+
+          action = await ask({
+            type: 'list',
+            message: `Que voulez-vous faire ?`,
+            choices: [
+              {
+                name: 'Continuer quand-même',
+                value: 'check',
+              },
+              {
+                name: 'Modifier',
+                value: 'edit',
+              },
+              {
+                name: 'Quitter',
+                value: 'quit',
+              },
+            ],
+          });
+        } else {
+          action = 'check';
+        }
+
+        continue;
+      }
+
+      if (action === 'edit') {
+        template = await inquirer.prompt<{
+          subject: string;
+          body: string;
+        }>([
+          {
+            type: 'input',
+            name: 'subject',
+            message: 'Sujet',
+            default: template?.subject || undefined,
+          },
+          {
+            type: 'editor',
+            name: 'body',
+            message: 'Contenu',
+            default: template?.body.trim() || undefined,
+          },
+        ]);
+
+        action = 'start';
+        continue;
+      }
+
+      if (action === 'check') {
+        const example = generate(template, year, !grouped ? firstPlayer : undefined);
 
         action = await ask({
           type: 'list',
-          message: `Que voulez-vous faire ?`,
+          message: `Voilà à quoi ressemblera le mail qui sera envoyé${
+            !grouped ? ` à ${firstPlayer.firstname} ${firstPlayer.lastname}` : ''
+          }.
+
+  ${chalk.yellowBright(example.subject)}
+
+  ${chalk.redBright('~~~~~~~~~~~~~~~~~~~~')}
+
+  ${chalk.greenBright(example.body)}
+
+  Voulez-vous continuer ?
+  `,
           choices: [
             {
-              name: 'Continuer quand-même',
-              value: 'check',
+              name: 'Continuer',
+              value: 'sendTest',
             },
             {
               name: 'Modifier',
@@ -212,147 +268,79 @@ async function handler({ year, template: templateName, grouped }: Arguments<Prop
             },
           ],
         });
-      } else {
-        action = 'check';
+
+        continue;
       }
 
-      continue;
-    }
+      if (action === 'sendTest') {
+        if (await confirm(`Voulez-vous envoyer un mail de test avant ?`)) {
+          const address = await ask<string>({ message: 'Adresse' });
+          const example = generate(template, year, !grouped ? firstPlayer : undefined);
 
-    if (action === 'edit') {
-      template = await inquirer.prompt<{
-        subject: string;
-        body: string;
-      }>([
-        {
-          type: 'input',
-          name: 'subject',
-          message: 'Sujet',
-          default: template?.subject || undefined,
-        },
-        {
-          type: 'editor',
-          name: 'body',
-          message: 'Contenu',
-          default: template?.body.trim() || undefined,
-        },
-      ]);
+          const spinner = ora('Envoi').start();
+          await sendMail({ recipients: [address || ''], ...example });
+          spinner.succeed();
+        }
 
-      action = 'start';
-      continue;
-    }
+        action = await ask({
+          message: `Que voulez-vous faire maintenant ?`,
+          type: 'list',
+          choices: [
+            {
+              name: `Envoyer le mail${grouped ? ' groupé' : ''} à ${players.length} personne${
+                players.length > 1 ? 's' : ''
+              }`,
+              value: 'send',
+            },
+            {
+              name: `Modifier`,
+              value: 'edit',
+            },
+            {
+              name: `Quitter`,
+              value: 'quit',
+            },
+          ],
+        });
 
-    if (action === 'check') {
-      const example = generate(template, year, !grouped ? firstPlayer : undefined);
-
-      action = await ask({
-        type: 'list',
-        message: `Voilà à quoi ressemblera le mail qui sera envoyé${
-          !grouped ? ` à ${firstPlayer.firstname} ${firstPlayer.lastname}` : ''
-        }.
-
-${chalk.yellowBright(example.subject)}
-
-${chalk.redBright('~~~~~~~~~~~~~~~~~~~~')}
-
-${chalk.greenBright(example.body)}
-
-Voulez-vous continuer ?
-`,
-        choices: [
-          {
-            name: 'Continuer',
-            value: 'sendTest',
-          },
-          {
-            name: 'Modifier',
-            value: 'edit',
-          },
-          {
-            name: 'Quitter',
-            value: 'quit',
-          },
-        ],
-      });
-
-      continue;
-    }
-
-    if (action === 'sendTest') {
-      if (await confirm(`Voulez-vous envoyer un mail de test avant ?`)) {
-        const address = await ask<string>({ message: 'Adresse' });
-        const example = generate(template, year, !grouped ? firstPlayer : undefined);
-
-        const spinner = ora('Envoi').start();
-        await sendMail({ recipients: [address || ''], ...example });
-        spinner.succeed();
+        continue;
       }
 
-      action = await ask({
-        message: `Que voulez-vous faire maintenant ?`,
-        type: 'list',
-        choices: [
-          {
-            name: `Envoyer le mail${grouped ? ' groupé' : ''} à ${players.length} personne${
-              players.length > 1 ? 's' : ''
-            }`,
-            value: 'send',
-          },
-          {
-            name: `Modifier`,
-            value: 'edit',
-          },
-          {
-            name: `Quitter`,
-            value: 'quit',
-          },
-        ],
-      });
+      if (action === 'send') {
+        const spinner = ora({ prefixText: 'Envoi' }).start();
 
-      continue;
-    }
+        if (grouped) {
+          const recipients = [...new Set(players.map((player) => player.email))];
+          await sendMail({ recipients, ...generate(template, year) });
+          spinner.succeed();
+        } else {
+          let chain = Promise.resolve<unknown>(null);
 
-    if (action === 'send') {
-      const spinner = ora({ prefixText: 'Envoi' }).start();
+          players.forEach((player, index) => {
+            chain = chain.then(() => {
+              const { subject, body } = generate(template as Template, year, player);
 
-      if (grouped) {
-        const recipients = [...new Set(players.map((player) => player.email))];
-        await sendMail({ recipients, ...generate(template, year) });
-        spinner.succeed();
-      } else {
-        let chain = Promise.resolve<unknown>(null);
+              spinner.text = `${index + 1}/${players.length}`;
 
-        players.forEach((player, index) => {
-          chain = chain.then(() => {
-            const { subject, body } = generate(template as Template, year, player);
-
-            spinner.text = `${index + 1}/${players.length}`;
-
-            return sendMail({
-              recipients: [player.email],
-              subject,
-              body,
+              return sendMail({
+                recipients: [player.email],
+                subject,
+                body,
+              });
             });
           });
-        });
 
-        await chain.then(() => {
-          spinner.succeed();
-        });
+          await chain.then(() => {
+            spinner.succeed();
+          });
+        }
+
+        break;
       }
-
-      break;
     }
-  }
 
-  console.log('Bye 👋');
-}
-
-const commandModule: CommandModule<unknown, Props> = {
-  command,
-  describe,
-  builder,
-  handler,
-};
+    console.log('Bye 👋');
+  },
+});
 
 export default commandModule;
