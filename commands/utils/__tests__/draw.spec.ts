@@ -5,10 +5,10 @@ import {
   resolveExclude,
   letsDraw,
   getCandidates,
-} from '../draw';
-import persons from '../__fixtures__/persons';
-import draws from '../__fixtures__/draws';
-import { cloneDeep } from 'lodash';
+} from '../draw.js';
+import persons from '../__fixtures__/persons.js';
+import draws from '../__fixtures__/draws.js';
+import _ from 'lodash';
 
 const players = Object.values(persons);
 
@@ -20,7 +20,7 @@ test('letsDraw()', () => {
     0.38055135333948487, 0.995776535955728, 0.8825166814134866, 0.187156342404472,
   ]);
 
-  const draw = letsDraw(cloneDeep(players), draws, 2023);
+  const draw = letsDraw(_.cloneDeep(players), draws, 2023);
 
   expect(draw).toMatchObject({
     'robb-stark': 'joffrey-baratheon',
@@ -83,7 +83,7 @@ test('getTwoPastDraws()', () => {
 });
 
 test('resolveExclude()', () => {
-  expect(resolveExclude(cloneDeep(players), draws, 2023)).toMatchInlineSnapshot(`
+  expect(resolveExclude(_.cloneDeep(players), draws, 2023)).toMatchInlineSnapshot(`
     Array [
       Object {
         "age": "14-17",

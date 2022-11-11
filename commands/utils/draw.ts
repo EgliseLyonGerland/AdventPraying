@@ -1,4 +1,4 @@
-import { Draw, Person, PersonId } from '../../types';
+import { Draw, Person, PersonId } from '../../types.js';
 
 type Players = Person[];
 type Draws = Record<number, Draw>;

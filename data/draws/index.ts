@@ -1,8 +1,9 @@
 import fs from 'fs';
-import path from 'path';
-import { Draw } from '../../types';
+import { rootPath } from '../../config/index.js';
+import { Draw } from '../../types.js';
 
-const files = fs.readdirSync(__dirname);
+const drawsPath = `${rootPath}/data/draws`;
+const files = fs.readdirSync(drawsPath);
 
 const draws: Record<number, Draw> = {};
 
@@ -14,7 +15,7 @@ files.forEach((filename) => {
   }
 
   const [, year] = matches;
-  const content = fs.readFileSync(path.join(__dirname, filename)).toString();
+  const content = fs.readFileSync(`${drawsPath}/${filename}`).toString();
   draws[Number(year)] = JSON.parse(content) as Draw;
 });
 

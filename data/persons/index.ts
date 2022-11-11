@@ -1,9 +1,9 @@
 import fs from 'fs';
-import path from 'path';
-import { defaultAgeRange, Person, PersonData, PersonId } from '../../types';
+import { rootPath } from '../../config/index.js';
+import { defaultAgeRange, Person, PersonData, PersonId } from '../../types.js';
 
 export const data = JSON.parse(
-  fs.readFileSync(path.join(__dirname, 'data.json')).toString(),
+  fs.readFileSync(`${rootPath}/data/persons/data.json`).toString(),
 ) as PersonData[];
 
 export const all: Person[] = data.map((item) => ({

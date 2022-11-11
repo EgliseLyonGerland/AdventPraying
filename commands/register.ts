@@ -2,12 +2,13 @@ import fs from 'fs';
 import path from 'path';
 import inquirer, { QuestionCollection } from 'inquirer';
 import { format } from 'prettier';
-import _, { camelCase, capitalize, deburr } from 'lodash';
-import { data as persons } from '../data/persons';
-import { AgeRange, defaultAgeRange, PersonData } from '../types';
+import _ from 'lodash';
+import { data as persons } from '../data/persons/index.js';
+import { AgeRange, defaultAgeRange, PersonData } from '../types.js';
 import { Arguments, Argv, CommandModule } from 'yargs';
-import { parse } from 'papaparse';
-import { confirm } from './utils/prompt';
+import papaparse from 'papaparse';
+import { confirm } from './utils/prompt.js';
+import { rootPath } from '../config/index.js';
 
 type PersonEntry = Pick<PersonData, 'email' | 'firstname' | 'lastname' | 'gender' | 'age'>;
 
@@ -55,7 +56,7 @@ function addPerson({ email, firstname, lastname, age, gender }: PersonEntry) {
 
 function persistPersons() {
   const sortedPersons = _.sortBy(persons, ['id']);
-  const filepath = path.join(__dirname, '../data/persons/data.json');
+  const filepath = `${rootPath}/data/persons/data.json`;
 
   let content = JSON.stringify(sortedPersons);
   content = format(content.replace(/{/g, '{\n'), { parser: 'json' });
@@ -122,7 +123,7 @@ function formatValue(value: string, key: string) {
     case 'firstname':
     case 'lastname':
       if (/^[A-Z]+$/.test(value) || /^[a-z]+$/.test(value)) {
-        result = capitalize(value);
+        result = _.capitalize(value);
       }
       break;
 
@@ -144,9 +145,9 @@ function batchHandler(file: string) {
   }
 
   const content = fs.readFileSync(filePath);
-  const { data } = parse<PersonEntry>(content.toString(), {
+  const { data } = papaparse.parse<PersonEntry>(content.toString(), {
     header: true,
-    transformHeader: (value: string) => translate(camelCase(deburr(value))),
+    transformHeader: (value: string) => translate(_.camelCase(_.deburr(value))),
     transform: (value, key) => formatValue(translate(value), `${key}`),
   });
 

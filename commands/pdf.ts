@@ -1,9 +1,9 @@
 import { Arguments, Argv, CommandModule } from 'yargs';
 import PDFDocument from 'pdfkit';
 import fs from 'fs';
-import path from 'path';
-import { byId as persons } from '../data/persons';
-import draws from '../data/draws';
+import { byId as persons } from '../data/persons/index.js';
+import draws from '../data/draws/index.js';
+import { rootPath } from '../config/index.js';
 
 interface Props {
   year: number;
@@ -34,7 +34,7 @@ function addPage(doc: typeof PDFDocument, type: 'recto' | 'verso' = 'recto') {
     .rect(0, 0, width, height)
     .fill('#fff')
     .restore()
-    .image(path.join(__dirname, `../assets/${type}.png`), 0, 0, {
+    .image(`${rootPath}/assets/${type}.png`, 0, 0, {
       fit: [width, height],
       align: 'center',
       valign: 'center',
@@ -46,7 +46,7 @@ const handler = async ({ year }: Arguments<Props>) => {
     throw new Error(`Draw ${year} not found`);
   }
 
-  const outputPath = path.join(__dirname, `../export/draw${year}.pdf`);
+  const outputPath = `${rootPath}/export/draw${year}.pdf`;
   const draw = draws[year];
 
   if (fs.existsSync(outputPath)) {

@@ -1,14 +1,14 @@
-import { map } from 'lodash';
+import _ from 'lodash';
 import fs from 'fs';
-import path from 'path';
 import termSize from 'term-size';
 import { Argv, Arguments, CommandModule } from 'yargs';
 
-import persons from '../data/persons';
-import draws from '../data/draws';
-import { Draw, Person } from '../types';
-import { letsDraw } from './utils/draw';
-import { ask, confirm } from './utils/prompt';
+import persons from '../data/persons/index.js';
+import draws from '../data/draws/index.js';
+import { Draw, Person } from '../types.js';
+import { letsDraw } from './utils/draw.js';
+import { ask, confirm } from './utils/prompt.js';
+import { rootPath } from '../config/index.js';
 
 interface Props {
   year: number;
@@ -35,7 +35,7 @@ const handler = async ({ year }: Arguments<Props>) => {
     (await ask<Person[]>({
       type: 'checkbox',
       message: 'Select the participants',
-      choices: map(persons, (person) => ({
+      choices: _.map(persons, (person) => ({
         value: person,
         name: `${person.firstname} ${person.lastname} (${person.age})`,
         checked: person.id in currentDraw,
@@ -56,10 +56,7 @@ const handler = async ({ year }: Arguments<Props>) => {
 
   const draw = letsDraw(players, draws, year);
 
-  fs.writeFileSync(
-    path.join(__dirname, `../data/draws/${year}.json`),
-    `${JSON.stringify(draw, null, 2)}\n`,
-  );
+  fs.writeFileSync(`${rootPath}/data/draws/${year}.json`, `${JSON.stringify(draw, null, 2)}\n`);
 };
 
 const commandModule: CommandModule<unknown, Props> = {

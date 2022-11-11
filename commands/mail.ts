@@ -1,10 +1,10 @@
 import { Arguments, Argv, CommandModule } from 'yargs';
-import { byId as persons } from '../data/persons';
-import draws from '../data/draws';
-import { defaultAgeRange, Person } from '../types';
+import { byId as persons } from '../data/persons/index.js';
+import draws from '../data/draws/index.js';
+import { defaultAgeRange, Person } from '../types.js';
 import { exec } from 'child_process';
 import terminalSize from 'term-size';
-import { ask, confirm } from './utils/prompt';
+import { ask, confirm } from './utils/prompt.js';
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import ora from 'ora';

@@ -1,5 +1,5 @@
-import { Draw } from '../../../types';
-import persons from './persons';
+import { Draw } from '../../../types.js';
+import persons from './persons.js';
 
 const draws: Record<number, Draw> = {
   2018: {

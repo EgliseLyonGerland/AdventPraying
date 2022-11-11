@@ -1,4 +1,4 @@
-import { AgeRange, defaultAgeRange, Person, PersonId } from '../../../types';
+import { AgeRange, defaultAgeRange, Person, PersonId } from '../../../types.js';
 
 const players: Record<PersonId, Person> = {
   'daenerys-targaryen': {
