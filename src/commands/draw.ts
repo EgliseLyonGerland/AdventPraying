@@ -1,14 +1,15 @@
-import _ from 'lodash';
 import fs from 'fs';
+
+import _ from 'lodash';
 import termSize from 'term-size';
 import { Argv, Arguments, CommandModule } from 'yargs';
 
-import persons from '../data/persons/index.js';
+import { rootPath } from '../config/index.js';
 import draws from '../data/draws/index.js';
+import persons from '../data/persons/index.js';
 import { Draw, Person } from '../types.js';
 import { letsDraw } from './utils/draw.js';
 import { ask, confirm } from './utils/prompt.js';
-import { rootPath } from '../config/index.js';
 
 interface Props {
   year: number;

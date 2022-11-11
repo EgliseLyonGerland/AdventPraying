@@ -1,4 +1,5 @@
 import fs from 'fs';
+
 import { rootPath } from '../../config/index.js';
 import { Draw } from '../../types.js';
 

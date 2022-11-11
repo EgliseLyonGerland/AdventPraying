@@ -1,13 +1,15 @@
 import fs from 'fs';
 import path from 'path';
+
 import inquirer, { QuestionCollection } from 'inquirer';
-import { format } from 'prettier';
 import _ from 'lodash';
+import papaparse from 'papaparse';
+import { format } from 'prettier';
+
+import { rootPath } from '../../config/index.js';
 import { data as persons } from '../../data/persons/index.js';
 import { AgeRange, defaultAgeRange, PersonData } from '../../types.js';
-import papaparse from 'papaparse';
 import { confirm } from '../utils/prompt.js';
-import { rootPath } from '../../config/index.js';
 import { createModule } from '../utils/yargs.js';
 
 type PersonEntry = Pick<PersonData, 'email' | 'firstname' | 'lastname' | 'gender' | 'age'>;

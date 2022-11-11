@@ -1,9 +1,11 @@
-import { Arguments, Argv, CommandModule } from 'yargs';
-import PDFDocument from 'pdfkit';
 import fs from 'fs';
-import { byId as persons } from '../data/persons/index.js';
-import draws from '../data/draws/index.js';
+
+import PDFDocument from 'pdfkit';
+import { Arguments, Argv, CommandModule } from 'yargs';
+
 import { rootPath } from '../config/index.js';
+import draws from '../data/draws/index.js';
+import { byId as persons } from '../data/persons/index.js';
 
 interface Props {
   year: number;

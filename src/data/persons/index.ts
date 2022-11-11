@@ -1,6 +1,8 @@
 import fs from 'fs';
+
 import _ from 'lodash';
 import { format } from 'prettier';
+
 import { rootPath } from '../../config/index.js';
 import { defaultAgeRange, Person, PersonData, PersonId } from '../../types.js';
 

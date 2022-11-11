@@ -1,4 +1,8 @@
 import { mockRandom } from 'jest-mock-random';
+import _ from 'lodash';
+
+import draws from '../__fixtures__/draws.js';
+import persons from '../__fixtures__/persons.js';
 import {
   getFamilyMembers,
   getTwoPastDraws,
@@ -6,9 +10,6 @@ import {
   letsDraw,
   getCandidates,
 } from '../draw.js';
-import persons from '../__fixtures__/persons.js';
-import draws from '../__fixtures__/draws.js';
-import _ from 'lodash';
 
 const players = Object.values(persons);
 

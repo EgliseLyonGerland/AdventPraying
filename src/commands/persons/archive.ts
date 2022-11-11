@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+
 import { data as persons, save } from '../../data/persons/index.js';
 import { createModule } from '../utils/yargs.js';
 

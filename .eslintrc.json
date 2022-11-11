@@ -8,9 +8,20 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
-  "plugins": ["@typescript-eslint", "prettier", "jest"],
+  "plugins": ["@typescript-eslint", "prettier", "jest", "import"],
   "rules": {
     "prettier/prettier": ["error"],
-    "prefer-template": "error"
+    "prefer-template": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", ["parent", "sibling"]],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
   }
 }

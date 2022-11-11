@@ -1,10 +1,10 @@
+import chalk from 'chalk';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import chalk from 'chalk';
 
 import drawCommand from './commands/draw.js';
-import pdfCommand from './commands/pdf.js';
 import mailCommand from './commands/mail.js';
+import pdfCommand from './commands/pdf.js';
 import personsCommand from './commands/persons.js';
 
 void yargs(hideBin(process.argv))
