@@ -3,18 +3,14 @@ import path from 'path';
 import inquirer, { QuestionCollection } from 'inquirer';
 import { format } from 'prettier';
 import _ from 'lodash';
-import { data as persons } from '../data/persons/index.js';
-import { AgeRange, defaultAgeRange, PersonData } from '../types.js';
-import { Arguments, Argv, CommandModule } from 'yargs';
+import { data as persons } from '../../data/persons/index.js';
+import { AgeRange, defaultAgeRange, PersonData } from '../../types.js';
 import papaparse from 'papaparse';
-import { confirm } from './utils/prompt.js';
-import { rootPath } from '../config/index.js';
+import { confirm } from '../utils/prompt.js';
+import { rootPath } from '../../config/index.js';
+import { createModule } from '../utils/yargs.js';
 
 type PersonEntry = Pick<PersonData, 'email' | 'firstname' | 'lastname' | 'gender' | 'age'>;
-
-interface Props {
-  batch?: string;
-}
 
 const dictionary: Record<string, string> = {
   prenom: 'firstname',
@@ -27,16 +23,6 @@ const dictionary: Record<string, string> = {
   nomDutilisateur: 'email',
   '18 et plus': '18+',
 };
-
-const command = `register`;
-const describe = 'Register a person';
-
-function builder(yargs: Argv): Argv<Props> {
-  return yargs.option('batch', {
-    desc: 'Path to batch',
-    type: 'string',
-  });
-}
 
 function addPerson({ email, firstname, lastname, age, gender }: PersonEntry) {
   const data = {
@@ -159,19 +145,23 @@ function batchHandler(file: string) {
   persistPersons();
 }
 
-const handler = async ({ batch }: Arguments<Props>) => {
-  if (batch) {
-    batchHandler(batch);
-  } else {
-    await manualHandler();
-  }
-};
+const registerModule = createModule({
+  command: 'register',
+  describe: 'Register a person',
 
-const commandModule: CommandModule<unknown, Props> = {
-  command,
-  describe,
-  builder,
-  handler,
-};
+  builder: (argv) =>
+    argv.option('batch', {
+      desc: 'Path to batch',
+      type: 'string',
+    }),
 
-export default commandModule;
+  handler: async ({ batch }) => {
+    if (batch) {
+      batchHandler(batch);
+    } else {
+      await manualHandler();
+    }
+  },
+});
+
+export default registerModule;
