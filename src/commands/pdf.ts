@@ -46,7 +46,7 @@ const handler = async ({ year }: Arguments<Props>) => {
     throw new Error(`Draw ${year} not found`);
   }
 
-  const outputPath = `${rootPath}/export/draw${year}.pdf`;
+  const outputPath = `${rootPath}/../export/draw${year}.pdf`;
   const draw = draws[year];
 
   if (fs.existsSync(outputPath)) {
