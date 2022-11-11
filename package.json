@@ -47,7 +47,7 @@
     "webpack-cli": "4.10.0"
   },
   "scripts": {
-    "start": "ts-node index",
+    "start": "ts-node src/index",
     "lint": "eslint .",
     "format": "prettier --write --ignore-unknown '**/*'",
     "format-check": "prettier --check --ignore-unknown '**/*'",

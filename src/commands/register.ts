@@ -19,6 +19,9 @@ interface Props {
 const dictionary: Record<string, string> = {
   prenom: 'firstname',
   nom: 'lastname',
+  tonPrenom: 'firstname',
+  tonNom: 'lastname',
+  dansQuelleTrancheDageTeSituesTu: 'age',
   horodateur: 'timestamp',
   username: 'email',
   nomDutilisateur: 'email',
